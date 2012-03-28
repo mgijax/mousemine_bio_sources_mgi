@@ -1,0 +1,5 @@
+<project name="mgi-mp" default="default" basedir=".">
+  <description>build, test, package mgi-mp</description>
+  
+  <import file="../../../../imbuild/source.xml"/>
+</project>

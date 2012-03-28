@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+<!-- add any <class> elements here -->
+
+    <!-- ****************** PUBLICATIONS **************************** -->
+    <class name="Publication" is-interface="true">
+	<!-- Augment core class. Add field for MGI#. (Many references from MGI have
+	     no pubmedid, but all refs have a MGI#.)
+	-->
+	<attribute name="mgiId" type="java.lang.String" />
+	<attribute name="abstractText" type="java.lang.String" />
+        </class>
+
+    <!-- ****************** GENOMIC STUFF *************************** -->
+    <!-- =========================================================================
+    The following feature types are not defined by the SO, so define them here.
+    These are needed for importing some MCV types. Other MCV types are mapped
+    to corresponding SO types.
+    -->
+    <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="PolymorphicPseudogene" extends="Pseudogene" is-interface="true"> </class>
+    <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
+    <class name="UnclassifiedNcRNAGene" extends="Gene" is-interface="true"> </class>
+    <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
+
+    <!--=============================================================================-->
+    <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
+	<!-- Augment SO class. Add explicit chromosome reference. -->
+	<reference name="chromosome" referenced-type="Chromosome" />
+        </class>
+    <class name="SequenceFeature" extends="BioEntity" is-interface="true">
+	<!-- Augment SO class. -->
+	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
+	</class>
+    <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
+	<!-- Augment SO class. 
+	    -->
+	<reference name="partner" referenced-type="SyntenicRegion" reverse-reference="partner" />
+	</class>
+
+    <!-- ****************** HOMOLOGIES ****************************** 
+    The following classes are the de facto Intermine standard for representing
+    homology assertions. They are copied here from the entrez-compara source.
+    NOTE that this model organizes information VERY DIFFERENTLY than the MGI
+    model! (Be warned...)
+    -->
+    <class name="Homologue" is-interface="true">
+	<attribute name="type" type="java.lang.String"/> <!-- "orthology" or "parology" -->
+	<reference name="gene" referenced-type="Gene" reverse-reference="homologues"/>
+	<reference name="homologue" referenced-type="Gene"/>
+	<collection name="dataSets" referenced-type="DataSet"/>
+	<collection name="evidence" referenced-type="OrthologueEvidence"/>
+	</class>
+    <class name="OrthologueEvidence" is-interface="true">
+	<reference name="evidenceCode" referenced-type="OrthologueEvidenceCode"/>
+	<collection name="publications" referenced-type="Publication"/>
+	</class>
+    <class name="OrthologueEvidenceCode" is-interface="true">
+	<attribute name="abbreviation" type="java.lang.String"/>
+	<attribute name="name" type="java.lang.String"/>
+	</class>
+    <class name="Gene" extends="SequenceFeature" is-interface="true">
+	<collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
+	<!-- The following attribute is to conform to the standard, which is
+	    to cache the GO annotations for an object.
+	    -->
+	<collection name="goAnnotation" referenced-type="GOAnnotation"/>
+	</class>
+
+    <!-- ****************** ALLELES, STRAINS, GENOTYPES ************* -->
+    <class name="Allele" extends="SequenceCollection" is-interface="true">
+	<!-- Augment core class.  -->
+	<attribute name="isWildType" type="java.lang.Boolean" />
+	<attribute name="alleleType" type="java.lang.String" />
+	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="alleles" />
+	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
+	<reference name="strainOfOrigin" referenced-type="Strain" />
+	</class>
+
+    <class name="Strain" extends="BioEntity" is-interface="true">
+	<attribute name="strainType" type="java.lang.String" />
+	<collection name="genotypes" referenced-type="Genotype" reverse-reference="background" />
+	</class>
+
+    <class name="Genotype" extends="BioEntity" is-interface="true">
+	<!-- New class.  Make it a BioEntity (sigh) so that we can create OntologyAnnotations to them. -->
+	<reference name="background" referenced-type="Strain" reverse-reference="genotypes" />
+	<collection name="alleles" referenced-type="Allele" reverse-reference="genotypes" />
+	<collection name="allelePairs" referenced-type="GenotypeAllelePair" reverse-reference="genotype" />
+	<attribute name="isConditional" type="java.lang.Boolean" />
+	<attribute name="note" type="java.lang.String" />
+	<attribute name="existsAs" type="java.lang.String" />
+	</class>
+
+    <class name="GenotypeAllelePair" is-interface="true">
+	<!-- New class. Mimics GXD_AllelePair. -->
+	<reference name="genotype" referenced-type="Genotype" reverse-reference="allelePairs" />
+	<reference name="allele1" referenced-type="Allele" />
+	<reference name="allele2" referenced-type="Allele" />
+	<reference name="feature" referenced-type="SequenceFeature" />
+	<attribute name="pairState" type="java.lang.String" />
+        </class>
+
+    <!-- ****************** ONTOLOGIES ****************************** -->
+    <class name="GOTerm" extends="OntologyTerm" is-interface="true"> </class>
+    <class name="DiseaseTerm" extends="OntologyTerm" is-interface="true"> </class>
+    <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
+
+    <!-- ****************** ANNOTATIONS ***************************** -->
+    <class name="OntologyAnnotation" is-interface="true">
+	<!-- Augment core class: add collection of evidence records. This conforms
+	    to the standard. -->
+	<collection 
+	    name="evidence" 
+	    referenced-type="OntologyAnnotationEvidence" 
+	    reverse-reference="annotation" />
+	</class>
+
+    <class name="OntologyAnnotationEvidenceCode" is-interface="true">
+	<!-- New class. Matches the standard GOEvidenceCode model, but as 
+	    a generic.  GOEvidenceCode is derived below. 
+	-->
+	<attribute name="code" type="java.lang.String" />
+	</class>
+
+    <class name="OntologyAnnotationEvidence" is-interface="true">
+	<!-- New class. Matches the standard GOEvidence model, but as a generic.
+	     GOEvidence is derived below.
+	-->
+	<reference name="code" referenced-type="OntologyAnnotationEvidenceCode" />
+	<collection name="publications" referenced-type="Publication" />
+
+	<!-- New fields (not in standard). 
+	    NOTE: 'inferredFrom' is really 'withText' for this evidence record.
+	    To avoid confusion with the 'withText' field in class GOAnnotation,
+	    we call it something else here.
+	-->
+	<attribute name="inferredFrom" type="java.lang.String" />
+	<reference name="annotation" referenced-type="OntologyAnnotation" reverse-reference="evidence" />
+	</class>
+
+    <!-- These specific subtypes are for compatibility with existing widgets
+        and displayers, where GO annotations are specially distinguished.
+    -->
+    <class name="GOAnnotation"   extends="OntologyAnnotation"> 
+	<!-- These attributes are for compatibility with current standard.
+	    IMO, these actually belong in the evidence record.
+	-->
+	<attribute name="withText" type="java.lang.String" />
+	<reference name="with" referenced-type="BioEntity" />
+        </class>
+    <class name="GOEvidence"     extends="OntologyAnnotationEvidence"> 
+        </class>
+    <class name="GOEvidenceCode" extends="OntologyAnnotationEvidenceCode"> 
+        </class>
+
+</classes>

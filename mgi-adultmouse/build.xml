@@ -1,0 +1,5 @@
+<project name="mgi-adultmouse" default="default" basedir=".">
+  <description>build, test, package mgi-adultmouse</description>
+  
+  <import file="../../../../imbuild/source.xml"/>
+</project>
