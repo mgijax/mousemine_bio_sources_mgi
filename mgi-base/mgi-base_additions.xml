@@ -26,7 +26,7 @@
     <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
     <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
     <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
-    <class name="UnclassifiedNcRNAGene" extends="Gene" is-interface="true"> </class>
+    <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
     <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
 
     <!--=============================================================================-->
