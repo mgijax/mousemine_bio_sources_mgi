@@ -23,7 +23,7 @@
     <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
     <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
     <class name="PolymorphicPseudogene" extends="Pseudogene" is-interface="true"> </class>
-    <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicGeneSegment" extends="GeneSegment" is-interface="true"> </class>
     <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
     <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
     <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
