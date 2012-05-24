@@ -3,9 +3,4 @@
 
 <classes>
 <!-- add any <class> elements here -->
-    <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
-	<!-- Augment SO class.
-	    -->
-	<reference name="partner" referenced-type="SyntenicRegion" reverse-reference="partner" />
-	</class>
 </classes>
