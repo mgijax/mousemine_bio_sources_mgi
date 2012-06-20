@@ -148,16 +148,16 @@
     <!-- These specific subtypes are for compatibility with existing widgets
         and displayers, where GO annotations are specially distinguished.
     -->
-    <class name="GOAnnotation"   extends="OntologyAnnotation"> 
+    <class name="GOAnnotation"   extends="OntologyAnnotation" is-interface="true"> 
 	<!-- These attributes are for compatibility with current standard.
 	    IMO, these actually belong in the evidence record.
 	-->
 	<attribute name="withText" type="java.lang.String" />
 	<reference name="with" referenced-type="BioEntity" />
         </class>
-    <class name="GOEvidence"     extends="OntologyAnnotationEvidence"> 
+    <class name="GOEvidence"     extends="OntologyAnnotationEvidence" is-interface="true"> 
         </class>
-    <class name="GOEvidenceCode" extends="OntologyAnnotationEvidenceCode"> 
+    <class name="GOEvidenceCode" extends="OntologyAnnotationEvidenceCode" is-interface="true"> 
         </class>
 
 </classes>
