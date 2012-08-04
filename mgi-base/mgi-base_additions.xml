@@ -7,9 +7,11 @@
     <!-- ****************** PUBLICATIONS **************************** -->
     <class name="Publication" is-interface="true">
 	<!-- Augment core class. Add field for MGI#. (Many references from MGI have
-	     no pubmedid, but all refs have a MGI#.)
+	     no pubmedid, but all refs have a MGI#.) Also, J#, and citation (computed string).
 	-->
 	<attribute name="mgiId" type="java.lang.String" />
+	<attribute name="mgiJnum" type="java.lang.String" />
+	<attribute name="citation" type="java.lang.String" />
 	<attribute name="abstractText" type="java.lang.String" />
         </class>
 
