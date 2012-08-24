@@ -68,6 +68,7 @@
 	<attribute name="name" type="java.lang.String"/>
 	</class>
     <class name="Gene" extends="SequenceFeature" is-interface="true">
+	<attribute name="ncbiGeneNumber" type="java.lang.String"/>
 	<collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
 	<!-- The following attribute is to conform to the standard, which is
 	    to cache the GO annotations for an object.
