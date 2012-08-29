@@ -32,6 +32,12 @@
     <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
 
     <!--=============================================================================-->
+    <class name="BioEntity" is-interface="true">
+	<!-- The core model defines this in class Gene. We define it in the superclass because MGI 
+             has descriptions for other feature types (e.g. QTL, Chrom translocations, ...). -->
+	<attribute name="description" type="java.lang.String"/>
+        </class>
+
     <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
 	<!-- Augment SO class. Add explicit chromosome reference. -->
 	<reference name="chromosome" referenced-type="Chromosome" />
