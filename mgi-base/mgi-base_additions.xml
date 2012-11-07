@@ -7,9 +7,11 @@
     <!-- ****************** PUBLICATIONS **************************** -->
     <class name="Publication" is-interface="true">
 	<!-- Augment core class. Add field for MGI#. (Many references from MGI have
-	     no pubmedid, but all refs have a MGI#.)
+	     no pubmedid, but all refs have a MGI#.) Also, J#, and citation (computed string).
 	-->
 	<attribute name="mgiId" type="java.lang.String" />
+	<attribute name="mgiJnum" type="java.lang.String" />
+	<attribute name="citation" type="java.lang.String" />
 	<attribute name="abstractText" type="java.lang.String" />
         </class>
 
@@ -30,6 +32,12 @@
     <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
 
     <!--=============================================================================-->
+    <class name="BioEntity" is-interface="true">
+	<!-- The core model defines this in class Gene. We define it in the superclass because MGI 
+             has descriptions for other feature types (e.g. QTL, Chrom translocations, ...). -->
+	<attribute name="description" type="java.lang.String"/>
+        </class>
+
     <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
 	<!-- Augment SO class. Add explicit chromosome reference. -->
 	<reference name="chromosome" referenced-type="Chromosome" />
@@ -66,6 +74,7 @@
 	<attribute name="name" type="java.lang.String"/>
 	</class>
     <class name="Gene" extends="SequenceFeature" is-interface="true">
+	<attribute name="ncbiGeneNumber" type="java.lang.String"/>
 	<collection name="homologues" referenced-type="Homologue" reverse-reference="gene"/>
 	<!-- The following attribute is to conform to the standard, which is
 	    to cache the GO annotations for an object.
@@ -78,9 +87,17 @@
 	<!-- Augment core class.  -->
 	<attribute name="isWildType" type="java.lang.Boolean" />
 	<attribute name="alleleType" type="java.lang.String" />
+        <attribute name="inheritanceMode" type="java.lang.String" />
+        <attribute name="glTransmission" type="java.lang.String" />
 	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="alleles" />
-	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
 	<reference name="strainOfOrigin" referenced-type="Strain" />
+	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
+	<collection name="mutations" referenced-type="AlleleMolecularMutation" />
+	</class>
+
+    <class name="AlleleMolecularMutation" is-interface="true">
+	<!-- New class. Vocab of molecular mutation types. -->
+	<attribute name="name" type="java.lang.String"/>
 	</class>
 
     <class name="Strain" extends="BioEntity" is-interface="true">
