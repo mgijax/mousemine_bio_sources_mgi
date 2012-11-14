@@ -24,8 +24,6 @@
     <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> </class>
     <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
     <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
-    <class name="PolymorphicPseudogene" extends="Pseudogene" is-interface="true"> </class>
-    <class name="PseudogenicGeneSegment" extends="GeneSegment" is-interface="true"> </class>
     <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
     <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
     <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
@@ -131,6 +129,7 @@
 
     <!-- ****************** ANNOTATIONS ***************************** -->
     <class name="OntologyAnnotation" is-interface="true">
+        <attribute name="annotationExtension" type="java.lang.String" />
 	<!-- Augment core class: add collection of evidence records. This conforms
 	    to the standard. -->
 	<collection 
@@ -153,12 +152,8 @@
 	<reference name="code" referenced-type="OntologyAnnotationEvidenceCode" />
 	<collection name="publications" referenced-type="Publication" />
 
-	<!-- New fields (not in standard). 
-	    NOTE: 'inferredFrom' is really 'withText' for this evidence record.
-	    To avoid confusion with the 'withText' field in class GOAnnotation,
-	    we call it something else here.
-	-->
-	<attribute name="inferredFrom" type="java.lang.String" />
+	<attribute name="withText" type="java.lang.String" />
+        <attribute name="with" type="java.lang.String" />
 	<reference name="annotation" referenced-type="OntologyAnnotation" reverse-reference="evidence" />
 	</class>
 
@@ -166,11 +161,6 @@
         and displayers, where GO annotations are specially distinguished.
     -->
     <class name="GOAnnotation"   extends="OntologyAnnotation" is-interface="true"> 
-	<!-- These attributes are for compatibility with current standard.
-	    IMO, these actually belong in the evidence record.
-	-->
-	<attribute name="withText" type="java.lang.String" />
-	<reference name="with" referenced-type="BioEntity" />
         </class>
     <class name="GOEvidence"     extends="OntologyAnnotationEvidence" is-interface="true"> 
         </class>
