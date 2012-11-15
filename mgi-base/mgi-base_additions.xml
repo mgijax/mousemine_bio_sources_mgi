@@ -93,6 +93,9 @@
 	<reference name="strainOfOrigin" referenced-type="Strain" />
 	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
 	<collection name="mutations" referenced-type="AlleleMolecularMutation" />
+	<attribute name="isRecombinase" type="java.lang.Boolean" />
+        <attribute name="drivenBy" type="java.lang.String" />
+        <attribute name="inducedWith" type="java.lang.String" />
 	</class>
 
     <class name="AlleleMolecularMutation" is-interface="true">
