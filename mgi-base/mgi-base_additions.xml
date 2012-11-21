@@ -92,6 +92,7 @@
 	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
 	<collection name="mutations" referenced-type="AlleleMolecularMutation" />
 	<attribute name="isRecombinase" type="java.lang.Boolean" />
+        <attribute name="molecularNote" type="java.lang.String" />
         <attribute name="drivenBy" type="java.lang.String" />
         <attribute name="inducedWith" type="java.lang.String" />
 	</class>
