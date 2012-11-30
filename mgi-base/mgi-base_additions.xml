@@ -38,10 +38,12 @@
 
     <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
 	<!-- Augment SO class. Add explicit chromosome reference. -->
+	<attribute name="mgiType" type="java.lang.String"/>
 	<reference name="chromosome" referenced-type="Chromosome" />
         </class>
     <class name="SequenceFeature" extends="BioEntity" is-interface="true">
 	<!-- Augment SO class. -->
+	<attribute name="mgiType" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
 	</class>
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
