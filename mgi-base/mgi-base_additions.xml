@@ -97,12 +97,30 @@
         <attribute name="molecularNote" type="java.lang.String" />
         <attribute name="drivenBy" type="java.lang.String" />
         <attribute name="inducedWith" type="java.lang.String" />
+	<collection name="cellLines" referenced-type="CellLine" reverse-reference="alleles" />
 	</class>
 
     <class name="AlleleMolecularMutation" is-interface="true">
 	<!-- New class. Vocab of molecular mutation types. -->
 	<attribute name="name" type="java.lang.String"/>
 	</class>
+
+    <class name="CellLine" extends="BioEntity" is-interface="true">
+	<attribute name="cellLineType" type="java.lang.String" />
+	<reference name="strain" referenced-type="Strain" />
+	<reference name="derivation" referenced-type="CellLineDerivation" />
+	<collection name="alleles" referenced-type="Allele" reverse-reference="cellLines" />
+        </class>
+
+    <class name="CellLineDerivation" is-interface="true">
+	<attribute name="name" type="java.lang.String" />
+	<attribute name="vector" type="java.lang.String" />
+	<attribute name="vectorType" type="java.lang.String" />
+	<attribute name="derivationType" type="java.lang.String" />
+	<attribute name="creator" type="java.lang.String" />
+	<reference name="parentCellLine" referenced-type="CellLine" />
+	<reference name="publication" referenced-type="Publication" />
+        </class>
 
     <class name="Strain" extends="BioEntity" is-interface="true">
 	<attribute name="strainType" type="java.lang.String" />
