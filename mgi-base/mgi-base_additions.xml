@@ -170,6 +170,7 @@
 	    a generic.  GOEvidenceCode is derived below. 
 	-->
 	<attribute name="code" type="java.lang.String" />
+	<attribute name="name" type="java.lang.String" />
 	</class>
 
     <class name="OntologyAnnotationEvidence" is-interface="true">
