@@ -52,6 +52,7 @@
 	<!-- Augment SO class. 
 	    -->
 	<reference name="partner" referenced-type="SyntenicRegion" reverse-reference="partner" />
+	<attribute name="orientation" type="java.lang.String"/>
 	</class>
 
     <!-- ****************** HOMOLOGIES ****************************** 
