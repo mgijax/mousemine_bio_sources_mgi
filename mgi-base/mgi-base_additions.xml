@@ -154,7 +154,8 @@
     <class name="GOTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="DiseaseTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
-
+    <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
+    <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> </class>
     <!-- ****************** ANNOTATIONS ***************************** -->
     <class name="OntologyAnnotation" is-interface="true">
         <attribute name="annotationExtension" type="java.lang.String" />
