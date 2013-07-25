@@ -4,6 +4,4 @@
 <classes>
 <!-- add any <class> elements here -->
 
-<class name="DiseaseTerm" extends="OntologyTerm" is-interface="true" />
-
 </classes>

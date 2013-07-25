@@ -153,6 +153,7 @@
     <!-- ****************** ONTOLOGIES ****************************** -->
     <class name="GOTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="DiseaseTerm" extends="OntologyTerm" is-interface="true"> </class>
+    <class name="MedicTerm" extends="DiseaseTerm" is-interface="true"> </class>    
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> </class>
