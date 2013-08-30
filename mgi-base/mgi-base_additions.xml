@@ -157,6 +157,7 @@
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> </class>
+
     <!-- ****************** ANNOTATIONS ***************************** -->
     <class name="OntologyAnnotation" is-interface="true">
         <attribute name="annotationExtension" type="java.lang.String" />
@@ -184,7 +185,7 @@
 	<collection name="publications" referenced-type="Publication" />
 
 	<attribute name="withText" type="java.lang.String" />
-        <attribute name="with" type="java.lang.String" />
+	<collection name="with" referenced-type="BioEntity"/>
 	<reference name="annotation" referenced-type="OntologyAnnotation" reverse-reference="evidence" />
 	</class>
 
