@@ -162,7 +162,7 @@
     <class name="OntologyAnnotation" is-interface="true">
         <attribute name="annotationExtension" type="java.lang.String" />
 	<!-- Augment core class: add collection of evidence records. This conforms
-	    to the standard. -->
+	    to the standard for GO but at the abstract level. -->
 	<collection 
 	    name="evidence" 
 	    referenced-type="OntologyAnnotationEvidence" 
@@ -187,6 +187,13 @@
 	<attribute name="withText" type="java.lang.String" />
 	<collection name="with" referenced-type="BioEntity"/>
 	<reference name="annotation" referenced-type="OntologyAnnotation" reverse-reference="evidence" />
+	<!-- 
+	   Standard model put the annotationExtension field in the OntologyAnnotation class.
+	   It actually belongs in this class.
+
+	-->
+        <attribute name="annotationExtension" type="java.lang.String" />
+
 	</class>
 
     <!-- These specific subtypes are for compatibility with existing widgets
