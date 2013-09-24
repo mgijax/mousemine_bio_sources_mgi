@@ -115,6 +115,7 @@
 	<reference name="strain" referenced-type="Strain" />
 	<reference name="derivation" referenced-type="CellLineDerivation" />
 	<collection name="alleles" referenced-type="Allele" reverse-reference="cellLines" />
+	<collection name="genotypes" referenced-type="Genotype" reverse-reference="cellLines" />
         </class>
 
     <class name="CellLineDerivation" is-interface="true">
@@ -136,6 +137,7 @@
 	<!-- New class.  Make it a BioEntity (sigh) so that we can create OntologyAnnotations to them. -->
 	<reference name="background" referenced-type="Strain" reverse-reference="genotypes" />
 	<collection name="alleles" referenced-type="Allele" reverse-reference="genotypes" />
+	<collection name="cellLines" referenced-type="CellLine" reverse-reference="genotypes" />
 	<collection name="allelePairs" referenced-type="GenotypeAllelePair" reverse-reference="genotype" />
 	<attribute name="zygosity" type="java.lang.String" />
 	<attribute name="isConditional" type="java.lang.Boolean" />
@@ -148,7 +150,9 @@
 	<!-- New class. Mimics GXD_AllelePair. -->
 	<reference name="genotype" referenced-type="Genotype" reverse-reference="allelePairs" />
 	<reference name="allele1" referenced-type="Allele" />
+	<reference name="mutantCellLine1" referenced-type="CellLine" />
 	<reference name="allele2" referenced-type="Allele" />
+	<reference name="mutantCellLine2" referenced-type="CellLine" />
 	<reference name="feature" referenced-type="SequenceFeature" />
 	<attribute name="pairState" type="java.lang.String" />
         </class>
