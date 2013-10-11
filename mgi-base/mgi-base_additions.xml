@@ -13,7 +13,7 @@
 	<attribute name="mgiJnum" type="java.lang.String" />
 	<attribute name="citation" type="java.lang.String" />
 	<attribute name="abstractText" type="java.lang.String" />
-	<collection name="expressions" referenced-type="GXDExpression" reverse-reference="publication"/>
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="publication" />
         </class>
 
     <!-- ****************** GENOMIC STUFF *************************** -->
@@ -48,6 +48,7 @@
 	<!-- Augment SO class. -->
 	<attribute name="mgiType" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="feature"/>
 	</class>
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
 	<!-- Augment SO class. 
@@ -84,7 +85,6 @@
 	    to cache the GO annotations for an object.
 	    -->
 	<collection name="goAnnotation" referenced-type="GOAnnotation"/>
-	<collection name="expressions" referenced-type="GXDExpression" reverse-reference="gene"/>
 	</class>
 
     <!-- ****************** ALLELES, STRAINS, GENOTYPES ************* -->
@@ -143,7 +143,7 @@
 	<attribute name="isConditional" type="java.lang.Boolean" />
 	<attribute name="note" type="java.lang.String" />
 	<attribute name="existsAs" type="java.lang.String" />
-	<collection name="expressions" referenced-type="GXDExpression" reverse-reference="genotype"/>
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="genotype"/>
 	</class>
 
     <class name="GenotypeAllelePair" is-interface="true">
@@ -164,7 +164,7 @@
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> 
-        <collection name="expressions"  referenced-type="GXDExpression" reverse-reference="structure"/>
+        <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
     </class>
 
     <!-- ****************** ANNOTATIONS ***************************** -->
@@ -219,19 +219,17 @@
     <class name="GXDExpression" is-interface="true">
         <attribute name="assayId" type="java.lang.String" />
         <attribute name="assayType" type="java.lang.String" />
-        <reference name="gene" referenced-type="Gene" reverse-reference="expressions" />
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="expression" />
         <attribute name="probe" type="java.lang.String" />
-        <reference name="genotype" referenced-type="Genotype" reverse-reference="expressions" />
+        <reference name="genotype" referenced-type="Genotype" reverse-reference="expression" />
         <attribute name="sex" type="java.lang.String" />
         <attribute name="age" type="java.lang.String" />
-        <attribute name="ageMin" type="java.lang.Float" />
-        <attribute name="ageMax" type="java.lang.Float" />
         <attribute name="theilerStage" type="java.lang.Integer" />
-        <reference name="structure" referenced-type="EMAPXTerm" reverse-reference="expressions" />
+        <reference name="structure" referenced-type="EMAPXTerm" reverse-reference="expression" />
         <attribute name="strength" type="java.lang.String" />
         <attribute name="pattern" type="java.lang.String" />
-        <attribute name="imageFigure" type="java.lang.String" />
-        <reference name="publication" referenced-type="Publication" reverse-reference="expressions"/>
+        <attribute name="image" type="java.lang.String" />
+        <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
         </class>
 
 </classes>
