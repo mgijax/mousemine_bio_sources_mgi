@@ -13,6 +13,7 @@
 	<attribute name="mgiJnum" type="java.lang.String" />
 	<attribute name="citation" type="java.lang.String" />
 	<attribute name="abstractText" type="java.lang.String" />
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="publication" />
         </class>
 
     <!-- ****************** GENOMIC STUFF *************************** -->
@@ -47,6 +48,7 @@
 	<!-- Augment SO class. -->
 	<attribute name="mgiType" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="feature"/>
 	</class>
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
 	<!-- Augment SO class. 
@@ -113,6 +115,7 @@
 	<reference name="strain" referenced-type="Strain" />
 	<reference name="derivation" referenced-type="CellLineDerivation" />
 	<collection name="alleles" referenced-type="Allele" reverse-reference="cellLines" />
+	<collection name="genotypes" referenced-type="Genotype" reverse-reference="cellLines" />
         </class>
 
     <class name="CellLineDerivation" is-interface="true">
@@ -134,18 +137,22 @@
 	<!-- New class.  Make it a BioEntity (sigh) so that we can create OntologyAnnotations to them. -->
 	<reference name="background" referenced-type="Strain" reverse-reference="genotypes" />
 	<collection name="alleles" referenced-type="Allele" reverse-reference="genotypes" />
+	<collection name="cellLines" referenced-type="CellLine" reverse-reference="genotypes" />
 	<collection name="allelePairs" referenced-type="GenotypeAllelePair" reverse-reference="genotype" />
 	<attribute name="zygosity" type="java.lang.String" />
 	<attribute name="isConditional" type="java.lang.Boolean" />
 	<attribute name="note" type="java.lang.String" />
 	<attribute name="existsAs" type="java.lang.String" />
+	<collection name="expression" referenced-type="GXDExpression" reverse-reference="genotype"/>
 	</class>
 
     <class name="GenotypeAllelePair" is-interface="true">
 	<!-- New class. Mimics GXD_AllelePair. -->
 	<reference name="genotype" referenced-type="Genotype" reverse-reference="allelePairs" />
 	<reference name="allele1" referenced-type="Allele" />
+	<reference name="mutantCellLine1" referenced-type="CellLine" />
 	<reference name="allele2" referenced-type="Allele" />
+	<reference name="mutantCellLine2" referenced-type="CellLine" />
 	<reference name="feature" referenced-type="SequenceFeature" />
 	<attribute name="pairState" type="java.lang.String" />
         </class>
@@ -156,7 +163,9 @@
     <class name="MedicTerm" extends="DiseaseTerm" is-interface="true"> </class>    
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
-    <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> </class>
+    <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> 
+        <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
+    </class>
 
     <!-- ****************** ANNOTATIONS ***************************** -->
     <class name="OntologyAnnotation" is-interface="true">
@@ -204,6 +213,23 @@
     <class name="GOEvidence"     extends="OntologyAnnotationEvidence" is-interface="true"> 
         </class>
     <class name="GOEvidenceCode" extends="OntologyAnnotationEvidenceCode" is-interface="true"> 
+        </class>
+
+    <!-- ****************** GXD Expression ****************************** -->
+    <class name="GXDExpression" is-interface="true">
+        <attribute name="assayId" type="java.lang.String" />
+        <attribute name="assayType" type="java.lang.String" />
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="expression" />
+        <attribute name="probe" type="java.lang.String" />
+        <reference name="genotype" referenced-type="Genotype" reverse-reference="expression" />
+        <attribute name="sex" type="java.lang.String" />
+        <attribute name="age" type="java.lang.String" />
+        <attribute name="theilerStage" type="java.lang.Integer" />
+        <reference name="structure" referenced-type="EMAPXTerm" reverse-reference="expression" />
+        <attribute name="strength" type="java.lang.String" />
+        <attribute name="pattern" type="java.lang.String" />
+        <attribute name="image" type="java.lang.String" />
+        <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
         </class>
 
 </classes>
