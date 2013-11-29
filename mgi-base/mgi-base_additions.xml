@@ -37,6 +37,7 @@
 	<!-- The core model defines this in class Gene. We define it in the superclass because MGI 
              has descriptions for other feature types (e.g. QTL, Chrom translocations, ...). -->
 	<attribute name="description" type="java.lang.String"/>
+	<reference name="chromosomeLocation" referenced-type="Location" />
         </class>
 
     <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
