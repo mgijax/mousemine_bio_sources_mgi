@@ -164,9 +164,6 @@
     <class name="MedicTerm" extends="DiseaseTerm" is-interface="true"> </class>    
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
-    <class name="EMAPXTerm" extends="AnatomyTerm" is-interface="true"> 
-        <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
-    </class>
 
     <!-- ****************** ANNOTATIONS ***************************** -->
     <class name="OntologyAnnotation" is-interface="true">
@@ -226,7 +223,6 @@
         <attribute name="sex" type="java.lang.String" />
         <attribute name="age" type="java.lang.String" />
         <attribute name="theilerStage" type="java.lang.Integer" />
-        <reference name="structure" referenced-type="EMAPXTerm" reverse-reference="expression" />
         <attribute name="strength" type="java.lang.String" />
         <attribute name="pattern" type="java.lang.String" />
         <attribute name="image" type="java.lang.String" />
