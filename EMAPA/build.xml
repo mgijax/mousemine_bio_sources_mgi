@@ -1,0 +1,5 @@
+<project name="EMAPA" default="default" basedir=".">
+  <description>build, test, package EMAPA</description>
+  
+  <import file="../../../../imbuild/source.xml"/>
+</project>
