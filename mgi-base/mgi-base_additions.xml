@@ -227,7 +227,8 @@
         <reference name="genotype" referenced-type="Genotype" reverse-reference="expression" />
         <attribute name="sex" type="java.lang.String" />
         <attribute name="age" type="java.lang.String" />
-        <attribute name="theilerStage" type="java.lang.Integer" />
+        <attribute name="emaps" type="java.lang.String" />
+        <attribute name="stage" type="java.lang.String" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="expression" />
         <attribute name="strength" type="java.lang.String" />
         <attribute name="pattern" type="java.lang.String" />
