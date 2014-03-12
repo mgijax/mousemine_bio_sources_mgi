@@ -1,0 +1,4 @@
+<project name="fmfd-tasks" default="default" basedir=".">
+  <description>build mgi-base tasks</description>
+  <import file="../../../../../imbuild/library.xml"/> 
+</project>
