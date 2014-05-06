@@ -231,6 +231,7 @@
         <attribute name="stage" type="java.lang.String" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="expression" />
         <attribute name="strength" type="java.lang.String" />
+        <attribute name="detected" type="java.lang.Boolean" />
         <attribute name="pattern" type="java.lang.String" />
         <attribute name="image" type="java.lang.String" />
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
