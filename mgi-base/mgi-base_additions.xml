@@ -206,6 +206,11 @@
 	-->
         <attribute name="annotationExtension" type="java.lang.String" />
 
+	<!--
+	   Evidence for derived annotations comprises the annotations they were derived from.
+	-->
+	<collection name="baseAnnotations" referenced-type="OntologyAnnotation" />
+
 	</class>
 
     <!-- These specific subtypes are for compatibility with existing widgets
