@@ -239,6 +239,7 @@
         <attribute name="detected" type="java.lang.Boolean" />
         <attribute name="pattern" type="java.lang.String" />
         <attribute name="image" type="java.lang.String" />
+        <attribute name="specimenNum" type="java.lang.Integer" />
         <attribute name="note" type="java.lang.String" />
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
         </class>
