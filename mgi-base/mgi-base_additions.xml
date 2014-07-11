@@ -95,6 +95,7 @@
 	<attribute name="alleleType" type="java.lang.String" />
         <attribute name="projectCollection" type="java.lang.String" />
 	<collection name="alleleAttributes" referenced-type="AlleleAttribute" />
+        <attribute name="attributeString" type="java.lang.String" />
         <attribute name="inheritanceMode" type="java.lang.String" />
         <attribute name="glTransmission" type="java.lang.String" />
 	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="alleles" />
