@@ -41,7 +41,6 @@
         </class>
 
     <class name="ChromosomeStructureVariation" extends="SequenceFeature SequenceCollection" is-interface="true">
-	<!-- Augment SO class. Add explicit chromosome reference. -->
         </class>
 
     <class name="SequenceFeature" extends="BioEntity" is-interface="true">
