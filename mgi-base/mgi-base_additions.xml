@@ -40,11 +40,9 @@
 	<reference name="chromosomeLocation" referenced-type="Location" />
         </class>
 
-    <class name="ChromosomeStructureVariation" extends="SequenceCollection" is-interface="true">
-	<!-- Augment SO class. Add explicit chromosome reference. -->
-	<attribute name="mgiType" type="java.lang.String"/>
-	<reference name="chromosome" referenced-type="Chromosome" />
+    <class name="ChromosomeStructureVariation" extends="SequenceFeature SequenceCollection" is-interface="true">
         </class>
+
     <class name="SequenceFeature" extends="BioEntity" is-interface="true">
 	<!-- Augment SO class. -->
 	<attribute name="mgiType" type="java.lang.String"/>
