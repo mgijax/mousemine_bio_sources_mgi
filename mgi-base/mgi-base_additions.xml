@@ -25,6 +25,14 @@
     <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> </class>
     <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
     <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
+
+    <!--- No SO terms for these but they are in the MGI-Cannonical.gff file -->
+    <class name="PseudogenicCDS" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicFivePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicMRNA" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicStartCodon" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicStopCodon" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicThreePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
     <!--
     <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
     <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
