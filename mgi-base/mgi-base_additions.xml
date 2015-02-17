@@ -59,8 +59,6 @@
     <!-- ****************** HOMOLOGIES ****************************** 
     The following classes are the de facto Intermine standard for representing
     homology assertions. They are copied here from the entrez-compara source.
-    NOTE that this model organizes information VERY DIFFERENTLY than the MGI
-    model! (Be warned...)
     -->
     <class name="Homologue" is-interface="true">
 	<attribute name="type" type="java.lang.String"/> <!-- "orthology" or "parology" -->
