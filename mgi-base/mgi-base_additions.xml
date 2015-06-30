@@ -249,4 +249,42 @@
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
         </class>
 
+    <class name="MGIDirectedRelationship"   is-interface="true"> 
+	<attribute name="relationshipTerm" type="java.lang.String" />
+	<attribute name="qualifier" type="java.lang.String" />
+	<attribute name="evidenceCode" type="java.lang.String" />
+	<reference name="dataSet" referenced-type="DataSet" />
+        <reference name="publication" referenced-type="Publication" />
+        </class>
+
+    <class name="MGIMutationInvolves" extends="MGIDirectedRelationship"  is-interface="true"> 
+	<reference name="subject" referenced-type="Allele" />
+	<reference name="object" referenced-type="SequenceFeature" />
+        </class>
+
+    <class name="MGIExpressesComponent" extends="MGIDirectedRelationship"  is-interface="true"> 
+	<reference name="subject" referenced-type="Allele" />
+	<reference name="object" referenced-type="SequenceFeature" />
+	<attribute name="nonMouseOrganism" type="java.lang.String" />
+	<attribute name="nonMouseGeneSymbol" type="java.lang.String" />
+	<attribute name="nonMouseNcbiGeneId" type="java.lang.String" />
+        </class>
+
+    <class name="MGIInteractsWith" extends="MGIDirectedRelationship"  is-interface="true"> 
+	<reference name="subject" referenced-type="SequenceFeature" />
+	<reference name="object" referenced-type="SequenceFeature" />
+	<attribute name="dataSource" type="java.lang.String" />
+	<attribute name="validation" type="java.lang.String" />
+	<attribute name="score" type="java.lang.Double" />
+	<attribute name="algorithm" type="java.lang.String" />
+	<attribute name="participantProductId" type="java.lang.String" />
+	<attribute name="organizerProductId" type="java.lang.String" />
+	<attribute name="otherRefs" type="java.lang.String" />
+        </class>
+
+    <class name="MGIClusterHasMember" extends="MGIDirectedRelationship"  is-interface="true"> 
+	<reference name="subject" referenced-type="SequenceFeature" />
+	<reference name="object" referenced-type="SequenceFeature" />
+        </class>
+
 </classes>
