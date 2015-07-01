@@ -250,6 +250,8 @@
         </class>
 
     <class name="MGIDirectedRelationship"   is-interface="true"> 
+	<reference name="subject" referenced-type="BioEntity" />
+	<reference name="object" referenced-type="BioEntity" />
 	<attribute name="relationshipTerm" type="java.lang.String" />
 	<attribute name="qualifier" type="java.lang.String" />
 	<attribute name="evidenceCode" type="java.lang.String" />
@@ -283,7 +285,7 @@
         </class>
 
     <class name="MGIClusterHasMember" extends="MGIDirectedRelationship"  is-interface="true"> 
-	<reference name="subject" referenced-type="SequenceFeature" />
+	<reference name="subject" referenced-type="ComplexClusterRegion" />
 	<reference name="object" referenced-type="SequenceFeature" />
         </class>
 
