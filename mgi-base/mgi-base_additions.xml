@@ -22,7 +22,9 @@
     These are needed for importing some MCV types. Other MCV types are mapped
     to corresponding SO types.
     -->
-    <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> 
+	<collection name="members" referenced-type="MGIClusterHasMember" reverse-reference="cluster" />
+        </class>
     <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
     <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
     <!--
@@ -49,7 +51,13 @@
 	<attribute name="mgiType" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
 	<collection name="expression" referenced-type="GXDExpression" reverse-reference="feature"/>
+	<collection name="genomicClusters" referenced-type="MGIClusterHasMember" reverse-reference="member"/>
+	<collection name="involvedInMutations" referenced-type="MGIMutationInvolves" reverse-reference="feature"/>
+	<collection name="transgenicExpressors" referenced-type="MGIExpressesComponent" reverse-reference="feature"/>
+	<collection name="targets" referenced-type="MGIInteractsWith" reverse-reference="interactor"/>
+	<collection name="targetedBy" referenced-type="MGIInteractsWith" reverse-reference="target"/>
 	</class>
+
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
 	<!-- Augment SO class. 
 	    -->
@@ -104,6 +112,8 @@
         <attribute name="drivenBy" type="java.lang.String" />
         <attribute name="inducedWith" type="java.lang.String" />
 	<collection name="cellLines" referenced-type="CellLine" reverse-reference="alleles" />
+	<collection name="mutationInvolves" referenced-type="MGIMutationInvolves" reverse-reference="mutation" />
+	<collection name="expresses" referenced-type="MGIExpressesComponent" reverse-reference="allele" />
 	</class>
 
     <class name="AlleleAttribute" is-interface="true">
@@ -249,30 +259,44 @@
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
         </class>
 
-    <class name="MGIDirectedRelationship"   is-interface="true"> 
+
+    <!-- 
+    MGI Feature Relationship Classes. Each feature relationship category is flattened in the MouseMine
+    data model. The abstract superclass MGIDirectedRelationship reflects the base organization of this
+    concept in MGI. EXCEPT that the subject/object (organizer/participant) references can't be defined
+    at this level. 
+    -->
+    <class name="MGIDirectedRelationship" is-interface="true">
+	<!-- 
+	Every relationship object also has subject/object (organizer/participant) references.
+	Because the type of references varies by subclass, they are DEFINED IN THE SUBCLASSES.
+	Each subtype chooses names that best suit the purpose and aid understanding.
+	-->
 	<attribute name="relationshipTerm" type="java.lang.String" />
 	<attribute name="qualifier" type="java.lang.String" />
 	<attribute name="evidenceCode" type="java.lang.String" />
 	<reference name="dataSet" referenced-type="DataSet" />
         <reference name="publication" referenced-type="Publication" />
-        </class>
+	</class>
 
     <class name="MGIMutationInvolves" extends="MGIDirectedRelationship"  is-interface="true"> 
-	<reference name="subject" referenced-type="Allele" />
-	<reference name="object" referenced-type="SequenceFeature" />
+	<reference name="mutation" referenced-type="Allele" reverse-reference="mutationInvolves" />
+	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="involvedInMutations" />
         </class>
 
     <class name="MGIExpressesComponent" extends="MGIDirectedRelationship"  is-interface="true"> 
-	<reference name="subject" referenced-type="Allele" />
-	<reference name="object" referenced-type="SequenceFeature" />
+	<reference name="allele" referenced-type="Allele" reverse-reference="expresses" />
+	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="transgenicExpressors"/>
+	<!-- -->
 	<attribute name="nonMouseOrganism" type="java.lang.String" />
 	<attribute name="nonMouseGeneSymbol" type="java.lang.String" />
 	<attribute name="nonMouseNcbiGeneId" type="java.lang.String" />
         </class>
 
     <class name="MGIInteractsWith" extends="MGIDirectedRelationship"  is-interface="true"> 
-	<reference name="subject" referenced-type="SequenceFeature" />
-	<reference name="object" referenced-type="SequenceFeature" />
+	<reference name="interactor" referenced-type="SequenceFeature" reverse-reference="targets" />
+	<reference name="target" referenced-type="SequenceFeature" reverse-reference="targetedBy" />
+	<!-- -->
 	<attribute name="dataSource" type="java.lang.String" />
 	<attribute name="validation" type="java.lang.String" />
 	<attribute name="score" type="java.lang.Double" />
@@ -283,8 +307,8 @@
         </class>
 
     <class name="MGIClusterHasMember" extends="MGIDirectedRelationship"  is-interface="true"> 
-	<reference name="subject" referenced-type="ComplexClusterRegion" />
-	<reference name="object" referenced-type="SequenceFeature" />
+	<reference name="cluster" referenced-type="ComplexClusterRegion" reverse-reference="members" />
+	<reference name="member" referenced-type="SequenceFeature" reverse-reference="genomicClusters" />
         </class>
 
 </classes>
