@@ -27,6 +27,14 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
      */
     public MgiGffGFF3RecordHandler (Model model) {
         super(model);
+        refsAndCollections.put("Exon", "transcripts");
+        refsAndCollections.put("FivePrimeUTR","MRNAs");
+        refsAndCollections.put("MatchPart","genes");
+        refsAndCollections.put("MRNA", "genes");
+        refsAndCollections.put("StopCodon","MRNAs");
+        refsAndCollections.put("StartCodon","MRNAs");
+        refsAndCollections.put("PseudogeneicExon","pseudogenicTranscripts");
+        refsAndCollections.put("ThreePrimeUTR","MRNAs");
     }
 
     /**
@@ -52,6 +60,15 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
         //
         // You should make sure that new Items you create are unique, i.e. by storing in a map by
         // some identifier. 
+
+	Item feature = getFeature();
+        String pi = feature.getAttribute("primaryIdentifier").getValue();
+        pi = pi.replace("MGI:MGI:","MGI:");
+        feature.setAttribute("primaryIdentifier",pi);
+	System.out.println(pi);
+
+
+
 
     }
 
