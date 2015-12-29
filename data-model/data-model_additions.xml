@@ -201,7 +201,7 @@
 	<collection 
 	    name="evidence" 
 	    referenced-type="OntologyAnnotationEvidence" 
-	    reverse-reference="annotation" />
+	    />
 	</class>
 
     <class name="OntologyAnnotationEvidenceCode" is-interface="true">
@@ -221,7 +221,6 @@
 
 	<attribute name="withText" type="java.lang.String" />
 	<collection name="with" referenced-type="BioEntity"/>
-	<reference name="annotation" referenced-type="OntologyAnnotation" reverse-reference="evidence" />
 	<!-- 
 	   Standard model put the annotationExtension field in the OntologyAnnotation class.
 	   It actually belongs in this class.
