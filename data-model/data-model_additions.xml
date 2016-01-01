@@ -201,6 +201,7 @@
 	<collection 
 	    name="evidence" 
 	    referenced-type="OntologyAnnotationEvidence" 
+	    reverse-reference="annotation"
 	    />
 	</class>
 
