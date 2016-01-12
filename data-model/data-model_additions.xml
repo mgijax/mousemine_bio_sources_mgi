@@ -234,7 +234,10 @@
 	   Evidence for derived annotations comprises the annotations they were derived from.
 	-->
 	<collection name="baseAnnotations" referenced-type="OntologyAnnotation" />
-
+        <!--
+           Curator notes
+        -->
+        <collection name="comments" referenced-type="Comment" />
 	</class>
 
     <!-- These specific subtypes are for compatibility with existing widgets
