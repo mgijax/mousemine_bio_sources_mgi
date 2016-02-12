@@ -63,6 +63,9 @@ public class MgiBasePostprocess extends PostProcessor
     public void postProcess()
         throws ObjectStoreException {
 
+        CreateGeneIsoformRelations cgir = new CreateGeneIsoformRelations(osw);
+        cgir.postProcess();       
+
         long startTime = System.currentTimeMillis();
 
         osw.beginTransaction();
