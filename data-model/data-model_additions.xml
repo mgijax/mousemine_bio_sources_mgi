@@ -165,6 +165,7 @@
 	<collection name="allelePairs" referenced-type="GenotypeAllelePair" reverse-reference="genotype" />
 	<attribute name="zygosity" type="java.lang.String" />
 	<attribute name="isConditional" type="java.lang.Boolean" />
+        <attribute name="hasMutantAllele" type="java.lang.Boolean" />
 	<attribute name="note" type="java.lang.String" />
 	<attribute name="existsAs" type="java.lang.String" />
 	<collection name="expression" referenced-type="GXDExpression" reverse-reference="genotype"/>
