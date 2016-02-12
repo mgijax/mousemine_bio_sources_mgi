@@ -66,7 +66,7 @@ public class CreateGeneIsoformRelations extends PostProcessor
         osw.beginTransaction();
         while(it.hasNext()){
           ResultsRow<InterMineObject> rr = it.next();
-
+          System.out.println(rr.get(0).getFieldValue(pi)+"---->"+rr.get(1).getFieldValue(pi));
           if(gene == null ||
                !gene.getFieldValue(pi).equals(rr.get(1).getFieldValue(pi))){
             if(gene != null){
@@ -83,6 +83,8 @@ public class CreateGeneIsoformRelations extends PostProcessor
          proteins.add(isoform);
        
         }
+        gene.setFieldValue("proteins",proteins);
+        osw.store(gene);
         osw.commitTransaction();
       }catch(Exception e){
         LOG.error("Failed to create gene to isoform associations");
