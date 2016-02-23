@@ -83,8 +83,10 @@ public class CreateGeneIsoformRelations extends PostProcessor
          proteins.add(isoform);
        
         }
-        gene.setFieldValue("proteins",proteins);
-        osw.store(gene);
+	if(gene != null){
+	    gene.setFieldValue("proteins",proteins);
+	    osw.store(gene);
+	}
         osw.commitTransaction();
       }catch(Exception e){
         LOG.error("Failed to create gene to isoform associations");
