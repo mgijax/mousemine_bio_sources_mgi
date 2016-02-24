@@ -1,0 +1,4 @@
+<project name="mgi-omim-tasks" default="default" basedir=".">
+  <description>build mgi-omim tasks</description>
+  <import file="../../../../../imbuild/library.xml"/> 
+</project>

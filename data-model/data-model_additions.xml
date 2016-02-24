@@ -186,7 +186,9 @@
     <class name="GOTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="DiseaseTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="DOTerm" extends="DiseaseTerm" is-interface="true"> </class>    
-    <class name="OMIMTerm" extends="DiseaseTerm" is-interface="true"> </class>    
+    <class name="OMIMTerm" extends="DiseaseTerm" is-interface="true">
+       <attribute name="OMIMId" type="java.lang.Integer" />
+    </class>    
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPATerm" extends="AnatomyTerm" is-interface="true"> 
