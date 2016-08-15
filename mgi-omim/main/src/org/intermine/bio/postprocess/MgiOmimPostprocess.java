@@ -29,7 +29,7 @@ import org.intermine.objectstore.query.ResultsRow;
 import org.intermine.postprocess.PostProcessor;
 
 /**
- * Populates the OMIMId field for OMIM terms contains just the numeric ID not 'OMIM:'
+ * Populates the omimId field for OMIM terms contains just the numeric ID not 'OMIM:'
  *
  * @author Steve Neuhauser
  */
@@ -55,7 +55,7 @@ public class MgiOmimPostprocess extends PostProcessor
     public void postProcess()
         throws ObjectStoreException {
 
-        LOG.info("MEDIC PostProcessor created");
+        LOG.info("OMIM PostProcessor created");
 
         Query q = new Query();
         q.setDistinct(false);
@@ -67,7 +67,7 @@ public class MgiOmimPostprocess extends PostProcessor
         Results res = os.execute(q, 5000, true, true, true);
 
        osw.beginTransaction();
-       LOG.info("MEDIC PostProcessor begining iteration");
+       LOG.info("OMIM PostProcessor begining iteration");
        Iterator<?> iter = res.iterator();
        int count =0;
        try{
@@ -78,7 +78,7 @@ public class MgiOmimPostprocess extends PostProcessor
             if(id != null && id.indexOf("OMIM:") != -1){
              LOG.info(id+"-POW--->"+id.substring(5));
              id = id.substring(5);
-             term.setoMIMId(new Integer(id));
+             term.setOmimId(new Integer(id));
              osw.store(term);
             }
         }
@@ -86,9 +86,7 @@ public class MgiOmimPostprocess extends PostProcessor
       }catch(Exception e){
 	LOG.error(e);
       }
-      LOG.info("MEDIC Postprocessor done");
+      LOG.info("OMIM Postprocessor done");
 
     }
-
-
 }
