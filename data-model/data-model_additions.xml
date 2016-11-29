@@ -57,6 +57,7 @@
     <class name="SequenceFeature" extends="BioEntity" is-interface="true">
 	<!-- Augment SO class. -->
 	<attribute name="mgiType" type="java.lang.String"/>
+	<attribute name="specificity" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
 	<collection name="expression" referenced-type="GXDExpression" reverse-reference="feature"/>
 	<collection name="genomicClusters" referenced-type="MGIClusterHasMember" reverse-reference="member"/>
