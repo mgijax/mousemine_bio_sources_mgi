@@ -17,41 +17,12 @@
         </class>
 
     <!-- ****************** GENOMIC STUFF *************************** -->
-    <!-- =========================================================================
-    The following feature types are not defined by the SO, so define them here.
-    These are needed for importing some MCV types. Other MCV types are mapped
-    to corresponding SO types.
-    -->
-    <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> 
-	<collection name="members" referenced-type="MGIClusterHasMember" reverse-reference="cluster" />
-        </class>
-    <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
-    <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
-
-    <!--- No SO terms for these but they are in the MGI-Cannonical.gff file -->
-    <class name="PseudogenicCDS" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicFivePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicMRNA" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicStartCodon" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicStopCodon" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicThreePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
-    <!--
-    <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
-    <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
-    <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
-    <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
--->
-
-    <!--=============================================================================-->
     <class name="BioEntity" is-interface="true">
-	<!-- The core model defines this in class Gene. We define it in the superclass because MGI 
+	<!-- The core model defines this attribute in class Gene. We define it in the superclass because MGI 
              has descriptions for other feature types (e.g. QTL, Chrom translocations, ...). -->
 	<attribute name="description" type="java.lang.String"/>
 	<reference name="chromosomeLocation" referenced-type="Location" />
         <reference name="earliestPublication" referenced-type="Publication" />
-        </class>
-
-    <class name="ChromosomeStructureVariation" extends="SequenceFeature SequenceCollection" is-interface="true">
         </class>
 
     <class name="SequenceFeature" extends="BioEntity" is-interface="true">
@@ -66,6 +37,51 @@
 	<collection name="targets" referenced-type="MGIInteractsWith" reverse-reference="interactor"/>
 	<collection name="targetedBy" referenced-type="MGIInteractsWith" reverse-reference="target"/>
 	</class>
+
+    <!-- To match MGI model, make GeneSegment a subclass of Gene. In the default SO model, GeneSegment is a 
+         sibling of Gene, both under SequenceFeature.
+	 -->
+    <class name="GeneSegment" extends="Gene" is-interface="true"> </class>
+
+    <!-- To match MGI model, make HeritablePhenotypcMarker a subclass of Gene. In the default SO model, it is a 
+         sibling of Gene, both under SequenceFeature.
+	 -->
+    <class name="HeritablePhenotypicMarker" extends="Gene" is-interface="true"> </class>
+
+    <!-- To match MGI model, we do NOT want PseudogenicGeneSegment to be a subclass of GeneSegment, which
+         is how it is defined in the SO. Instead, it should be a subclass of PseudogenicRegion.
+	 -->
+    <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
+
+    <!-- =========================================================================
+    The following feature types are not defined by the SO, so define them here.
+    These are needed for importing some MCV types. Other MCV types are mapped
+    to corresponding SO types.
+    -->
+    <class name="ComplexClusterRegion" extends="SequenceFeature" is-interface="true"> 
+	<collection name="members" referenced-type="MGIClusterHasMember" reverse-reference="cluster" />
+        </class>
+    <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
+
+    <!--- No SO terms for these but they are in the MGI-Cannonical.gff file
+    <class name="PseudogenicCDS" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicFivePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicMRNA" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicStartCodon" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicStopCodon" extends="PseudogenicRegion" is-interface="true"> </class>
+    <class name="PseudogenicThreePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
+    -->
+    <!--
+    <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
+    <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
+    <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
+    <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
+    -->
+
+    <!--=============================================================================-->
+    <class name="ChromosomeStructureVariation" extends="SequenceFeature SequenceCollection" is-interface="true">
+        </class>
 
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
 	<!-- Augment SO class. 
