@@ -17,6 +17,10 @@
         </class>
 
     <!-- ****************** GENOMIC STUFF *************************** -->
+    <class name="Location" is-interface="true">
+	<attribute name="assembly" type="java.lang.String"/>
+	</class>
+
     <class name="BioEntity" is-interface="true">
 	<!-- The core model defines this attribute in class Gene. We define it in the superclass because MGI 
              has descriptions for other feature types (e.g. QTL, Chrom translocations, ...). -->
