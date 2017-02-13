@@ -252,6 +252,11 @@
         <attribute name="annotationExtension" type="java.lang.String" />
 
 	<!--
+	   Date this annotation was made.
+	-->
+	<attribute name="annotationDate" type="java.lang.String" />
+
+	<!--
 	   Evidence for derived annotations comprises the annotations they were derived from.
 	-->
 	<collection name="baseAnnotations" referenced-type="OntologyAnnotation" />
