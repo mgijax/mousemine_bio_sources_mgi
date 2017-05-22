@@ -1,5 +1,0 @@
-<project name="mgi-medic" default="default" basedir=".">
-  <description>build, test, package medic</description>
-  
-  <import file="../../../../imbuild/source.xml"/>
-</project>
