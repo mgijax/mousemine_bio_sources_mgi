@@ -90,9 +90,16 @@
     <class name="SyntenicRegion" extends="SequenceFeature" is-interface="true">
 	<!-- Augment SO class. 
 	    -->
-	<reference name="partner" referenced-type="SyntenicRegion" reverse-reference="partner" />
+	<reference name="syntenyBlock" referenced-type="SyntenyBlock" reverse-reference="syntenicRegions" />
 	<attribute name="orientation" type="java.lang.String"/>
-	</class>
+        </class>
+
+    <class name="SyntenyBlock" is-interface="true">
+        <collection name="syntenicRegions" referenced-type="SyntenicRegion" reverse-reference="syntenyBlock"/>
+        <reference name="dataSet" referenced-type="DataSet"/>
+        <reference name="publication" referenced-type="Publication"/>
+        </class>
+
 
     <!-- ****************** HOMOLOGIES ****************************** 
     The following classes are the de facto Intermine standard for representing
