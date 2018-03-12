@@ -1,0 +1,8 @@
+rootProject.name = 'bio-sources'
+
+//Configure here the bio-sources to be included in the gradle multi-projects
+//include ':bio-source-biogrid',':bio-source-chado-db'
+
+//project(':bio-source-biogrid').projectDir = new File(settingsDir, './biogrid')
+//project(':bio-source-chado-db').projectDir = new File(settingsDir, './chado-db')
+

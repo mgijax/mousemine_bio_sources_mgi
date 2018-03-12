@@ -1,0 +1,14 @@
+sourceSets {
+    main {
+        java {
+            srcDirs = ['build/gen']
+        }
+        resources {
+            srcDirs = ['resources']
+        }
+    }
+}
+
+processResources {
+    from('.') { include ("*.properties")}
+}

@@ -1,5 +1,0 @@
-<project name="data-model" default="default" basedir=".">
-  <description>build, test, package data-model</description>
-  
-  <import file="../../../../imbuild/source.xml"/>
-</project>
