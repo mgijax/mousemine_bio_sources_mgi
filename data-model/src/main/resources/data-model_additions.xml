@@ -55,6 +55,7 @@
     <!-- To match MGI model, we do NOT want PseudogenicGeneSegment to be a subclass of GeneSegment, which
          is how it is defined in the SO. Instead, it should be a subclass of PseudogenicRegion.
 	 -->
+    <class name="PseudogenicRegion" extends="SequenceFeature" is-interface="true"/>
     <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
 
     <!-- =========================================================================

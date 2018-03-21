@@ -1,8 +1,25 @@
-rootProject.name = 'bio-sources'
+rootProject.name = 'bio-sources-mousemine'
 
 //Configure here the bio-sources to be included in the gradle multi-projects
-//include ':bio-source-biogrid',':bio-source-chado-db'
+include ':bio-source-data-model',
+':bio-source-EMAPA',
+':bio-source-fmfd',
+':bio-source-gxd-anatomy',
+':bio-source-mgi-adultmouse',
+':bio-source-mgi-base',
+':bio-source-mgi-do',
+':bio-source-mgi-gff',
+':bio-source-mgi-go',
+':bio-source-mgi-mp'
 
-//project(':bio-source-biogrid').projectDir = new File(settingsDir, './biogrid')
-//project(':bio-source-chado-db').projectDir = new File(settingsDir, './chado-db')
+project(':bio-source-data-model').projectDir = new File(settingsDir, './data-model')
+project(':bio-source-EMAPA').projectDir = new File(settingsDir, './EMAPA')
+project(':bio-source-fmfd').projectDir = new File(settingsDir, './fmfd')
+project(':bio-source-gxd-anatomy').projectDir = new File(settingsDir, './gxd-anatomy')
+project(':bio-source-mgi-adultmouse').projectDir = new File(settingsDir, './mgi-adultmouse')
+project(':bio-source-mgi-do').projectDir = new File(settingsDir, './mgi-do')
+project(':bio-source-mgi-gff').projectDir = new File(settingsDir, './mgi-gff')
+project(':bio-source-mgi-go').projectDir = new File(settingsDir, './mgi-go')
+project(':bio-source-mgi-mp').projectDir = new File(settingsDir, './mgi-mp')
+
 
