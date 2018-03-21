@@ -15,8 +15,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.intermine.model.bio.GOAnnotation;
 import org.intermine.model.bio.SequenceFeature;
+import org.intermine.model.bio.GOAnnotation;
 import org.intermine.model.bio.Gene;
 import org.intermine.bio.util.Constants;
 import org.intermine.objectstore.ObjectStore;
