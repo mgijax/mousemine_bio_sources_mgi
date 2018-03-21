@@ -6,6 +6,10 @@ ext {
 buildscript {
     repositories {
         mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://oss.jfrog.org/artifactory/oss-snapshot-local"
+        }
     }
     dependencies {
         classpath group: 'org.intermine', name: 'plugin', version: '1.+'
@@ -18,8 +22,8 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'maven'
-    apply plugin: 'database'
-    apply plugin: 'biosource'
+    apply plugin: 'dbmodel'
+    apply plugin: 'biosource-dbmodel'
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
@@ -27,6 +31,9 @@ subprojects {
     repositories {
         mavenCentral()
         mavenLocal()
+        maven {
+            url "https://oss.jfrog.org/artifactory/oss-snapshot-local"
+        }
     }
 
     configurations {
@@ -46,7 +53,7 @@ subprojects {
         mergeModel group : "org.intermine", name: "intermine-objectstore", version: imVersion
     }
 
-    dbConfig {
+    dbModelConfig {
         objectStoreName = "os.bio-test"
         modelName = "genomic"
         defaultInterminePropertiesFile = "default.intermine.bio-test.properties"
