@@ -181,10 +181,15 @@
 	<reference name="publication" referenced-type="Publication" />
         </class>
 
+    <class name="StrainAttribute" is-interface="true">
+	<attribute name="name" type="java.lang.String"/>
+	</class>
+
     <class name="Strain" extends="BioEntity" is-interface="true">
-	<attribute name="strainType" type="java.lang.String" />
 	<collection name="carries" referenced-type="Allele" reverse-reference="carriedBy" />
 	<collection name="genotypes" referenced-type="Genotype" reverse-reference="background" />
+	<attribute name="attributeString" type="java.lang.String" />
+	<collection name="attributes" referenced-type="StrainAttribute" />
 	</class>
 
     <class name="Genotype" extends="BioEntity" is-interface="true">
