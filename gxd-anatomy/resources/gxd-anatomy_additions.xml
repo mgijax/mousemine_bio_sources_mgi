@@ -8,4 +8,107 @@
         <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
     </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"/>
+    <class name="GXDExpression" is-interface="true">
+        <attribute name="probe" type="java.lang.String"/>
+        <attribute name="assayType" type="java.lang.String"/>
+        <attribute name="strength" type="java.lang.String"/>
+        <attribute name="sex" type="java.lang.String"/>
+        <attribute name="emaps" type="java.lang.String"/>
+        <attribute name="pattern" type="java.lang.String"/>
+        <attribute name="stage" type="java.lang.String"/>
+        <attribute name="assayId" type="java.lang.String"/>
+        <attribute name="age" type="java.lang.String"/>
+        <attribute name="image" type="java.lang.String"/>
+        <attribute name="note" type="java.lang.String"/>
+        <attribute name="detected" type="java.lang.Boolean"/>
+        <attribute name="specimenNum" type="java.lang.Integer"/>
+        <reference name="publication" referenced-type="Publication" reverse-reference="expression"/>
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="expression"/>
+        <reference name="structure" referenced-type="EMAPATerm" reverse-reference="expression"/>
+        <reference name="genotype" referenced-type="Genotype" reverse-reference="expression"/>
+    </class>
+    <class name="Genotype" extends="BioEntity" is-interface="true">
+        <attribute name="isConditional" type="java.lang.Boolean"/>
+        <attribute name="note" type="java.lang.String"/>
+        <attribute name="hasMutantAllele" type="java.lang.Boolean"/>
+        <attribute name="zygosity" type="java.lang.String"/>
+        <attribute name="existsAs" type="java.lang.String"/>
+        <reference name="background" referenced-type="Strain" reverse-reference="genotypes"/>
+        <collection name="alleles" referenced-type="Allele" reverse-reference="genotypes"/>
+        <collection name="cellLines" referenced-type="CellLine" reverse-reference="genotypes"/>
+        <collection name="allelePairs" referenced-type="GenotypeAllelePair" reverse-reference="genotype"/>
+        <collection name="expression" referenced-type="GXDExpression" reverse-reference="genotype"/>
+    </class>
+    <class name="GenotypeAllelePair" is-interface="true">
+        <attribute name="pairState" type="java.lang.String"/>
+        <reference name="allele1" referenced-type="Allele"/>
+        <reference name="mutantCellLine1" referenced-type="CellLine"/>
+        <reference name="allele2" referenced-type="Allele"/>
+        <reference name="genotype" referenced-type="Genotype" reverse-reference="allelePairs"/>
+        <reference name="mutantCellLine2" referenced-type="CellLine"/>
+        <reference name="feature" referenced-type="SequenceFeature"/>
+    </class>
+    <class name="CellLine" extends="BioEntity" is-interface="true">
+        <attribute name="cellLineType" type="java.lang.String" />
+        <reference name="strain" referenced-type="Strain" />
+        <reference name="derivation" referenced-type="CellLineDerivation" />
+        <collection name="alleles" referenced-type="Allele" reverse-reference="cellLines" />
+        <collection name="genotypes" referenced-type="Genotype" reverse-reference="cellLines" />
+    </class>
+    <class name="CellLineDerivation" is-interface="true">
+        <attribute name="name" type="java.lang.String" />
+        <attribute name="vector" type="java.lang.String" />
+        <attribute name="vectorType" type="java.lang.String" />
+        <attribute name="derivationType" type="java.lang.String" />
+        <attribute name="creator" type="java.lang.String" />
+        <reference name="parentCellLine" referenced-type="CellLine" />
+        <reference name="publication" referenced-type="Publication" />
+    </class>
+
+    <class name="Strain" extends="BioEntity" is-interface="true">
+        <attribute name="strainType" type="java.lang.String" />
+        <collection name="genotypes" referenced-type="Genotype" reverse-reference="background" />
+    </class>
+
+    <class name="Allele" extends="SequenceCollection" is-interface="true">
+        <!-- Augment core class.  -->
+        <attribute name="isWildType" type="java.lang.Boolean" />
+        <attribute name="alleleType" type="java.lang.String" />
+        <attribute name="projectCollection" type="java.lang.String" />
+        <collection name="alleleAttributes" referenced-type="AlleleAttribute" />
+        <attribute name="attributeString" type="java.lang.String" />
+        <attribute name="inheritanceMode" type="java.lang.String" />
+        <attribute name="glTransmission" type="java.lang.String" />
+        <!-- <reference name="feature" referenced-type="SequenceFeature" reverse-reference="alleles" /> -->
+        <reference name="strainOfOrigin" referenced-type="Strain" />
+        <collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
+        <collection name="mutations" referenced-type="AlleleMolecularMutation" />
+        <attribute name="isRecombinase" type="java.lang.Boolean" />
+        <attribute name="molecularNote" type="java.lang.String" />
+        <attribute name="drivenBy" type="java.lang.String" />
+        <attribute name="inducedWith" type="java.lang.String" />
+        <collection name="cellLines" referenced-type="CellLine" reverse-reference="alleles" />
+        <collection name="mutationInvolves" referenced-type="MGIMutationInvolves" reverse-reference="mutation" />
+        <collection name="expresses" referenced-type="MGIExpressesComponent" reverse-reference="allele" />
+    </class>
+    <class name="AlleleMolecularMutation" is-interface="true">
+        <!-- New class. Vocab of molecular mutation types. -->
+        <attribute name="name" type="java.lang.String"/>
+    </class>
+    <class name="AlleleAttribute" is-interface="true">
+        <!-- New class. Vocab with terms like "conditional ready" and "reporter". -->
+        <attribute name="name" type="java.lang.String"/>
+    </class>
+    <class name="MGIMutationInvolves" extends="MGIDirectedRelationship"  is-interface="true">
+        <reference name="mutation" referenced-type="Allele" reverse-reference="mutationInvolves" />
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="involvedInMutations" />
+    </class>
+    <class name="MGIExpressesComponent" extends="MGIDirectedRelationship"  is-interface="true">
+        <reference name="allele" referenced-type="Allele" reverse-reference="expresses" />
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="transgenicExpressors"/>
+        <!-- -->
+        <attribute name="nonMouseOrganism" type="java.lang.String" />
+        <attribute name="nonMouseGeneSymbol" type="java.lang.String" />
+        <attribute name="nonMouseNcbiGeneId" type="java.lang.String" />
+    </class>
 </classes>
