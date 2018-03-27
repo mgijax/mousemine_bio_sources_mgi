@@ -12,6 +12,7 @@ executeLog*
 *.class
 productionLog
 *~
+.gradle/
 
 !/intermine/webservice/client/download/dist/
 
