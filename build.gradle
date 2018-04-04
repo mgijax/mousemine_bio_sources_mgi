@@ -61,7 +61,7 @@ subprojects {
     }
 
     bioSourceDBModelConfig {
-        extraAdditionsFilePath = "data-model_additions.xml"
+        extraAdditionsFile = "data-model_additions.xml"
     }
 
     task copyMineProperties(type: Copy) {
