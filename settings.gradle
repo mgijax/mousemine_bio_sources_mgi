@@ -3,7 +3,6 @@ rootProject.name = 'bio-sources-mousemine'
 //Configure here the bio-sources to be included in the gradle multi-projects
 include ':bio-source-fmfd',
 //':bio-source-EMAPA',
-//':bio-source-data-model',
 ':bio-source-gxd-anatomy',
 ':bio-source-mgi-adultmouse',
 ':bio-source-mgi-base',
@@ -12,7 +11,6 @@ include ':bio-source-fmfd',
 ':bio-source-mgi-go',
 ':bio-source-mgi-mp'
 
-//project(':bio-source-data-model').projectDir = new File(settingsDir, './data-model')
 //project(':bio-source-EMAPA').projectDir = new File(settingsDir, './EMAPA')
 project(':bio-source-fmfd').projectDir = new File(settingsDir, './fmfd')
 project(':bio-source-gxd-anatomy').projectDir = new File(settingsDir, './gxd-anatomy')
