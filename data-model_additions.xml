@@ -219,8 +219,8 @@
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPATerm" extends="AnatomyTerm" is-interface="true"> 
         <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
-	<attribute name="startsAt" type="java.lang.Integer" />
-	<attribute name="endsAt" type="java.lang.Integer" />
+		<attribute name="startsAt" type="java.lang.Integer" />
+		<attribute name="endsAt" type="java.lang.Integer" />
     </class>
 
     <!-- ****************** ANNOTATIONS ***************************** -->
@@ -230,8 +230,8 @@
 	    to the standard for GO but at the abstract level. -->
 	<collection 
 	    name="evidence" 
-	    referenced-type="OntologyAnnotationEvidence" 
-	    reverse-reference="annotation"
+	    referenced-type="OntologyAnnotationEvidence"
+
 	    />
 	</class>
 
