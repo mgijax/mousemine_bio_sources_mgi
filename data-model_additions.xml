@@ -142,6 +142,7 @@
         <attribute name="glTransmission" type="java.lang.String" />
 	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="alleles" />
 	<reference name="strainOfOrigin" referenced-type="Strain" />
+		<collection name="carriedBy" referenced-type="Strain" reverse-reference="carries"/>
 	<collection name="genotypes" referenced-type="Genotype" reverse-reference="alleles" />
 	<collection name="mutations" referenced-type="AlleleMolecularMutation" />
 	<attribute name="isRecombinase" type="java.lang.Boolean" />
