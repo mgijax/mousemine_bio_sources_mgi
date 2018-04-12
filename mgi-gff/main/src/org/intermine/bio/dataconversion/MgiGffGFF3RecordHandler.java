@@ -1,18 +1,13 @@
 package org.intermine.bio.dataconversion;
 
-/*
- * Copyright (C) 2002-2011 FlyMine
- *
- * This code may be freely distributed and modified under the
- * terms of the GNU Lesser General Public Licence.  This should
- * be distributed with the code.  See the LICENSE file for more
- * information or http://www.gnu.org/copyleft/lesser.html.
- *
- */
-
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import org.intermine.bio.io.gff3.GFF3Record;
 import org.intermine.metadata.Model;
 import org.intermine.xml.full.Item;
+import java.lang.RuntimeException;
+import org.intermine.objectstore.ObjectStoreException;
 
 /**
  * A converter/retriever for the MgiGff dataset via GFF files.
@@ -20,21 +15,30 @@ import org.intermine.xml.full.Item;
 
 public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 {
-
     /**
      * Create a new MgiGffGFF3RecordHandler for the given data model.
      * @param model the model for which items will be created
      */
     public MgiGffGFF3RecordHandler (Model model) {
         super(model);
-        refsAndCollections.put("Exon", "transcripts");
-        refsAndCollections.put("FivePrimeUTR","MRNAs");
-        refsAndCollections.put("MatchPart","genes");
-        refsAndCollections.put("MRNA", "genes");
-        refsAndCollections.put("StopCodon","MRNAs");
-        refsAndCollections.put("StartCodon","MRNAs");
-        refsAndCollections.put("PseudogeneicExon","pseudogenicTranscripts");
-        refsAndCollections.put("ThreePrimeUTR","MRNAs");
+	//
+        refsAndCollections.put("Transcript", "gene");
+	refsAndCollections.put("MRNA", "gene");
+	refsAndCollections.put("LincRNA", "gene");
+	refsAndCollections.put("TRNA", "gene");
+	refsAndCollections.put("SenseOverlapNcRNA", "gene");
+	refsAndCollections.put("MiRNA", "gene");
+	refsAndCollections.put("AberrantProcessedTranscript", "gene");
+	refsAndCollections.put("ProcessedTranscript", "gene");
+	refsAndCollections.put("NMDTranscript", "gene");
+	refsAndCollections.put("RRNA", "gene");
+	refsAndCollections.put("SnoRNA", "gene");
+	refsAndCollections.put("SnRNA", "gene");
+        refsAndCollections.put("Exon", "transcript");
+        refsAndCollections.put("CDS", "transcript");
+        refsAndCollections.put("UTR", "transcript");
+        refsAndCollections.put("FivePrimeUTR", "transcript");
+        refsAndCollections.put("ThreePrimeUTR", "transcript");
     }
 
     /**
@@ -60,16 +64,8 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
         //
         // You should make sure that new Items you create are unique, i.e. by storing in a map by
         // some identifier. 
-
+	Map<String, List<String>> attrs = record.getAttributes();
 	Item feature = getFeature();
-        String pi = feature.getAttribute("primaryIdentifier").getValue();
-        pi = pi.replace("MGI:MGI:","MGI:");
-        feature.setAttribute("primaryIdentifier",pi);
-	System.out.println(pi);
-
-
-
-
+	feature.setReference("strain", getSequence().getReference("strain").getRefId());
     }
-
 }

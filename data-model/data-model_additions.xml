@@ -40,6 +40,20 @@
 	<collection name="transgenicExpressors" referenced-type="MGIExpressesComponent" reverse-reference="feature"/>
 	<collection name="targets" referenced-type="MGIInteractsWith" reverse-reference="interactor"/>
 	<collection name="targetedBy" referenced-type="MGIInteractsWith" reverse-reference="target"/>
+
+	<!-- For supporting multiple strain genomes as well as the canonical representation from MGI.
+	     Add optional Strain reference to SequenceFeature.
+	     Canonical SequenceFeatures (what we load from MGI) have null strain reference.
+	     Features for a specific strain's genome have the strain reference set accordingly.
+	-->
+	<reference name="strain" referenced-type="Strain" reverse-reference="genome" />
+
+
+	<!-- Add a 1:n relationship between a canonical SequenceFeature and its strain-specific equivalents.
+	-->
+	<collection name="specific" referenced-type="SequenceFeature" reverse-reference="canonical" />
+	<reference name="canonical" referenced-type="SequenceFeature" reverse-reference="specific" />
+
 	</class>
 
     <!-- To match MGI model, make GeneSegment a subclass of Gene. In the default SO model, GeneSegment is a 
@@ -190,6 +204,7 @@
 	<collection name="genotypes" referenced-type="Genotype" reverse-reference="background" />
 	<attribute name="attributeString" type="java.lang.String" />
 	<collection name="attributes" referenced-type="StrainAttribute" />
+	<collection name="genome" referenced-type="SequenceFeature" reverse-reference="strain" />
 	</class>
 
     <class name="Genotype" extends="BioEntity" is-interface="true">
