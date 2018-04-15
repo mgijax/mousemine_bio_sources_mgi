@@ -15,6 +15,8 @@ import org.intermine.objectstore.ObjectStoreException;
 
 public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 {
+    private Map<String,String> features = new HashMap<String,String>();
+
     /**
      * Create a new MgiGffGFF3RecordHandler for the given data model.
      * @param model the model for which items will be created
@@ -67,5 +69,24 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 	Map<String, List<String>> attrs = record.getAttributes();
 	Item feature = getFeature();
 	feature.setReference("strain", getSequence().getReference("strain").getRefId());
+	if (attrs.containsKey("mgi_id")) {
+	    feature.setReference("canonical", getCanonicalRef(attrs.get("mgi_id").get(0)));
+	}
+    }
+    public String getCanonicalRef(String mgiid) {
+	String featureRef = features.get(mgiid);
+	if (featureRef == null) {
+	    Item feature = converter.createItem("SequenceFeature");
+	    feature.setReference("organism", getOrganism());
+	    feature.setAttribute("primaryIdentifier", mgiid);
+	    featureRef = feature.getIdentifier();
+	    features.put(mgiid, featureRef);
+	    try {
+		converter.store(feature);
+	    } catch (ObjectStoreException e) {
+		throw new RuntimeException("Got objectStore exception.", e);
+	    }
+	}
+	return featureRef;
     }
 }
