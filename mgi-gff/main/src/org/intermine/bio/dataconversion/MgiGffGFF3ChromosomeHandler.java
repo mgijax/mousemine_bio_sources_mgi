@@ -30,7 +30,7 @@ public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 	try {
 	    seq.setAttribute("primaryIdentifier", identifier);
 	    seq.setAttribute("symbol", "chr" + chr);
-	    seq.setAttribute("name", "Chromosome " + chr + "(" + strainName + ")");
+	    seq.setAttribute("name", "Chromosome " + chr + " (" + strainName + ")");
 	    String sref = getStrainRef(strainName,converter);
 	    seq.setReference("strain", sref);
 	} catch (ObjectStoreException e) {
