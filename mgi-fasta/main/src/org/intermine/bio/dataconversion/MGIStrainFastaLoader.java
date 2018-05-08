@@ -2,6 +2,7 @@ package org.intermine.bio.dataconversion;
 
 import org.biojava.bio.Annotation;
 import org.biojava.bio.seq.Sequence;
+import org.intermine.bio.dataconversion.FastaLoaderTask;
 
 /**
  * A loader for FASTA files for the annotated strain genomes from ENSEMBL.
