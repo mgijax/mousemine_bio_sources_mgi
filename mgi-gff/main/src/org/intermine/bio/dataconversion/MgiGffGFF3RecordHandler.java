@@ -36,7 +36,8 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 	refsAndCollections.put("RRNA", "gene");
 	refsAndCollections.put("SnoRNA", "gene");
 	refsAndCollections.put("SnRNA", "gene");
-        refsAndCollections.put("Exon", "transcript");
+        //refsAndCollections.put("Exon", "transcript");
+        refsAndCollections.put("Exon", "transcripts");
         refsAndCollections.put("CDS", "transcript");
         refsAndCollections.put("UTR", "transcript");
         refsAndCollections.put("FivePrimeUTR", "transcript");
