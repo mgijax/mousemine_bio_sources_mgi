@@ -37,7 +37,7 @@ import org.intermine.objectstore.query.ResultsRow;
 import org.intermine.postprocess.PostProcessor;
 
 /**
- * Create the relationships between genes and isoforms of their cannonical protiens
+ * Create the relationships between genes and isoforms of their canonical proteins
  * @author Steve Neuhauser
  */
 public class CreateGeneIsoformRelations extends PostProcessor

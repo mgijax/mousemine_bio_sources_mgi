@@ -68,8 +68,16 @@
 
     <!-- To match MGI model, we do NOT want PseudogenicGeneSegment to be a subclass of GeneSegment, which
          is how it is defined in the SO. Instead, it should be a subclass of PseudogenicRegion.
-	 -->
     <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
+	 -->
+
+    <class name="Pseudogene" extends="Gene" is-interface="true"> </class>
+    <class name="PseudogenicTranscript" extends="Transcript" is-interface="true"> </class>
+    <class name="VGeneSegment" extends="GeneSegment" is-interface="true"> </class>
+    <class name="DGeneSegment" extends="GeneSegment" is-interface="true"> </class>
+    <class name="CGeneSegment" extends="GeneSegment" is-interface="true"> </class>
+    <class name="JGeneSegment" extends="GeneSegment" is-interface="true"> </class>
+
 
     <!-- =========================================================================
     The following feature types are not defined by the SO, so define them here.
@@ -81,21 +89,6 @@
         </class>
     <class name="DNASegment" extends="SequenceFeature" is-interface="true"> </class>
     <class name="OtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
-
-    <!--- No SO terms for these but they are in the MGI-Cannonical.gff file
-    <class name="PseudogenicCDS" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicFivePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicMRNA" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicStartCodon" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicStopCodon" extends="PseudogenicRegion" is-interface="true"> </class>
-    <class name="PseudogenicThreePrimeUTR" extends="PseudogenicRegion" is-interface="true"> </class>
-    -->
-    <!--
-    <class name="UnclassifiedCytogeneticMarker" extends="SequenceFeature" is-interface="true"> </class>
-    <class name="UnclassifiedGene" extends="Gene" is-interface="true"> </class>
-    <class name="UnclassifiedNcRNAGene" extends="NcRNAGene" is-interface="true"> </class>
-    <class name="UnclassifiedOtherGenomeFeature" extends="SequenceFeature" is-interface="true"> </class>
-    -->
 
     <!--=============================================================================-->
     <class name="ChromosomeStructureVariation" extends="SequenceFeature SequenceCollection" is-interface="true">

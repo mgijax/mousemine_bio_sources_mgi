@@ -12,6 +12,7 @@ import org.intermine.objectstore.ObjectStoreException;
 public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 {
     private Map<String,String> strains = new HashMap<String,String>();
+    private Map<String,String> canonicalChrs = new HashMap<String,String>();
 
     public Item makeSequenceItem(GFF3Converter converter, String identifier) {
 	// Column 1 contains values the form "chr|strain"
@@ -33,6 +34,8 @@ public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 	    seq.setAttribute("name", "Chromosome " + chr + " (" + strainName + ")");
 	    String sref = getStrainRef(strainName,converter);
 	    seq.setReference("strain", sref);
+	    String cref = getCanonicalChromosomeRef(identifier, converter);
+	    seq.setReference("canonical", cref);
 	} catch (ObjectStoreException e) {
 	    throw new RuntimeException("Got objectStore exception.", e);
 	}
@@ -48,5 +51,19 @@ public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 	    converter.store(strain);
 	}
 	return strainRef;
+    }
+    public String getCanonicalChromosomeRef(String chrid, GFF3Converter converter) throws ObjectStoreException {
+	int i = chrid.indexOf("|");
+	String cchrid = i == -1 ? chrid : chrid.substring(0,chrid.indexOf("|"));
+	String chrRef = canonicalChrs.get(cchrid);
+	if (chrRef == null) {
+	    Item cchr = converter.createItem("Chromosome");
+	    cchr.setReference("organism", converter.getOrganism());
+	    cchr.setAttribute("primaryIdentifier", cchrid);
+	    chrRef = cchr.getIdentifier();
+	    canonicalChrs.put(cchrid, chrRef);
+	    converter.store(cchr);
+	}
+	return chrRef;
     }
 }
