@@ -66,6 +66,11 @@ public class MgiBasePostprocess extends PostProcessor
         CreateGeneIsoformRelations cgir = new CreateGeneIsoformRelations(osw);
         cgir.postProcess();       
 
+        FixStrainChromosomePrimaryIds fscpi = new FixStrainChromosomePrimaryIds(osw);
+        fscpi.postProcess();       
+
+	LOG.info("MgiBasePostprocess: transferring GO annotations");
+
         long startTime = System.currentTimeMillis();
 
         osw.beginTransaction();

@@ -54,7 +54,7 @@ public class CreateGeneIsoformRelations extends PostProcessor
     }
 
     public void postProcess() throws ObjectStoreException {
-      LOG.info("Creating gene to isoform relationships");
+      LOG.info("CreateGeneIsoformRelations: Creating gene to isoform relationships");
       String pi = "primaryIdentifier";
 
       try{
