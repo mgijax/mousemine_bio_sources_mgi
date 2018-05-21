@@ -73,6 +73,7 @@
 
     <class name="Pseudogene" extends="Gene" is-interface="true"> </class>
     <class name="PseudogenicTranscript" extends="Transcript" is-interface="true"> </class>
+    <class name="PseudogenicExon" extends="Exon" is-interface="true"> </class>
     <class name="VGeneSegment" extends="GeneSegment" is-interface="true"> </class>
     <class name="DGeneSegment" extends="GeneSegment" is-interface="true"> </class>
     <class name="CGeneSegment" extends="GeneSegment" is-interface="true"> </class>
