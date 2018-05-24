@@ -1,5 +1,6 @@
 package org.intermine.bio.dataconversion;
 
+import org.apache.log4j.Logger;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -16,7 +17,10 @@ import org.intermine.objectstore.ObjectStoreException;
 
 public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 {
+    private static final Logger LOG = Logger.getLogger(MgiGffGFF3RecordHandler.class);
+
     private Map<String,String> features = new HashMap<String,String>();
+    private Item musculusOrganism = null;
 
     /**
      * Create a new MgiGffGFF3RecordHandler for the given data model.
@@ -78,17 +82,33 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
     public String getCanonicalRef(String mgiid) {
 	String featureRef = features.get(mgiid);
 	if (featureRef == null) {
-	    Item feature = converter.createItem("SequenceFeature");
-	    feature.setReference("organism", getOrganism());
-	    feature.setAttribute("primaryIdentifier", mgiid);
-	    featureRef = feature.getIdentifier();
-	    features.put(mgiid, featureRef);
 	    try {
+		Item feature = converter.createItem("SequenceFeature");
+		// canonical features are associated with 10090
+		feature.setReference("organism", getMusculusOrganism());
+		feature.setAttribute("primaryIdentifier", mgiid);
+		featureRef = feature.getIdentifier();
+		features.put(mgiid, featureRef);
 		converter.store(feature);
 	    } catch (ObjectStoreException e) {
 		throw new RuntimeException("Got objectStore exception.", e);
 	    }
 	}
 	return featureRef;
+    }
+    public Item getMusculusOrganism() throws ObjectStoreException {
+	String MM = "10090";
+        if (musculusOrganism == null) {
+	    Item sourceOrganism = getOrganism();
+	    if (sourceOrganism.getAttribute("taxonId").getValue().equals(MM)) {
+	        musculusOrganism = sourceOrganism ;
+	    }
+	    else {
+		musculusOrganism = converter.createItem("Organism");
+		musculusOrganism.setAttribute("taxonId", MM);
+		converter.store(musculusOrganism);
+	    }
+        }
+        return musculusOrganism;
     }
 }
