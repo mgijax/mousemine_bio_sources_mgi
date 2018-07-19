@@ -319,6 +319,7 @@
         <attribute name="specimenNum" type="java.lang.Integer" />
         <attribute name="note" type="java.lang.String" />
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
+	<attribute name="annotationDate" type="java.lang.String" />
         </class>
 
 
