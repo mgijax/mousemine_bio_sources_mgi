@@ -56,28 +56,23 @@
 
 	</class>
 
-    <!-- To match MGI model, make GeneSegment a subclass of Gene. In the default SO model, GeneSegment is a 
-         sibling of Gene, both under SequenceFeature.
+    <!-- To match MGI model, make GeneSegment a subclass of Gene.  In the default SO model, 
+         GeneSegment is a sibling of Gene, both under SequenceFeature.
 	 -->
-    <class name="GeneSegment" extends="Gene" is-interface="true"> </class>
-
     <!-- To match MGI model, make HeritablePhenotypcMarker a subclass of Gene. In the default SO model, it is a 
          sibling of Gene, both under SequenceFeature.
 	 -->
+    <class name="GeneSegment" extends="Gene" is-interface="true"> </class>
+    <class name="Pseudogene" extends="Gene" is-interface="true"> </class>
     <class name="HeritablePhenotypicMarker" extends="Gene" is-interface="true"> </class>
 
-    <!-- To match MGI model, we do NOT want PseudogenicGeneSegment to be a subclass of GeneSegment, which
-         is how it is defined in the SO. Instead, it should be a subclass of PseudogenicRegion.
-    <class name="PseudogenicGeneSegment" extends="PseudogenicRegion" is-interface="true"> </class>
-	 -->
-
-    <class name="Pseudogene" extends="Gene" is-interface="true"> </class>
+    <class name="VGeneSegment" extends="Transcript" is-interface="true"> </class>
+    <class name="DGeneSegment" extends="Transcript" is-interface="true"> </class>
+    <class name="CGeneSegment" extends="Transcript" is-interface="true"> </class>
+    <class name="JGeneSegment" extends="Transcript" is-interface="true"> </class>
     <class name="PseudogenicTranscript" extends="Transcript" is-interface="true"> </class>
+
     <class name="PseudogenicExon" extends="Exon" is-interface="true"> </class>
-    <class name="VGeneSegment" extends="GeneSegment" is-interface="true"> </class>
-    <class name="DGeneSegment" extends="GeneSegment" is-interface="true"> </class>
-    <class name="CGeneSegment" extends="GeneSegment" is-interface="true"> </class>
-    <class name="JGeneSegment" extends="GeneSegment" is-interface="true"> </class>
 
 
     <!-- =========================================================================

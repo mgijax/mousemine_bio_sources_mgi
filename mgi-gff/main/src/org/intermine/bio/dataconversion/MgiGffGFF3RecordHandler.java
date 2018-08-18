@@ -29,20 +29,30 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
     public MgiGffGFF3RecordHandler (Model model) {
         super(model);
 	//
-        refsAndCollections.put("Transcript", "gene");
+	refsAndCollections.put("LncRNA", "gene");
 	refsAndCollections.put("MRNA", "gene");
-	refsAndCollections.put("LincRNA", "gene");
-	refsAndCollections.put("TRNA", "gene");
-	refsAndCollections.put("SenseOverlapNcRNA", "gene");
 	refsAndCollections.put("MiRNA", "gene");
+	refsAndCollections.put("NcRNA", "gene");
+	refsAndCollections.put("PrimaryTranscript", "gene");
+	refsAndCollections.put("PseudogenicTranscript", "gene");
+	refsAndCollections.put("RRNA", "gene");
+	refsAndCollections.put("ScRNA", "gene");
+	refsAndCollections.put("SnRNA", "gene");
+	refsAndCollections.put("SnoRNA", "gene");
+	refsAndCollections.put("TRNA", "gene");
+        refsAndCollections.put("Transcript", "gene");
+	refsAndCollections.put("LincRNA", "gene");
+	refsAndCollections.put("SenseOverlapNcRNA", "gene");
 	refsAndCollections.put("AberrantProcessedTranscript", "gene");
 	refsAndCollections.put("ProcessedTranscript", "gene");
 	refsAndCollections.put("NMDTranscript", "gene");
-	refsAndCollections.put("RRNA", "gene");
-	refsAndCollections.put("SnoRNA", "gene");
-	refsAndCollections.put("SnRNA", "gene");
-        //refsAndCollections.put("Exon", "transcript");
+	refsAndCollections.put("VGeneSegment", "gene");
+	refsAndCollections.put("DGeneSegment", "gene");
+	refsAndCollections.put("JGeneSegment", "gene");
+	refsAndCollections.put("CGeneSegment", "gene");
+	//
         refsAndCollections.put("Exon", "transcripts");
+        refsAndCollections.put("PseudogenicExon", "transcripts");
         refsAndCollections.put("CDS", "transcript");
         refsAndCollections.put("UTR", "transcript");
         refsAndCollections.put("FivePrimeUTR", "transcript");
