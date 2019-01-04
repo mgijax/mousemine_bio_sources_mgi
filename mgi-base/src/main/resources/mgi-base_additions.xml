@@ -1,0 +1,3 @@
+<model name="genomic" package="org.intermine.model.bio">
+<class name="GOAnnotation" extends="OntologyAnnotation" is-interface="true"></class>
+</model>
