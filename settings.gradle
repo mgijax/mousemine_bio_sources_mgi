@@ -1,0 +1,23 @@
+rootProject.name = 'bio-sources'
+include ':bio-source-data-model'
+project(':bio-source-data-model').projectDir = new File(settingsDir, './data-model')
+include ':bio-source-EMAPA'
+project(':bio-source-EMAPA').projectDir = new File(settingsDir, './EMAPA')
+include ':bio-source-fmfd'
+project(':bio-source-fmfd').projectDir = new File(settingsDir, './fmfd')
+include ':bio-source-gxd-anatomy'
+project(':bio-source-gxd-anatomy').projectDir = new File(settingsDir, './gxd-anatomy')
+include ':bio-source-mgi-adultmouse'
+project(':bio-source-mgi-adultmouse').projectDir = new File(settingsDir, './mgi-adultmouse')
+include ':bio-source-mgi-base'
+project(':bio-source-mgi-base').projectDir = new File(settingsDir, './mgi-base')
+include ':bio-source-mgi-do'
+project(':bio-source-mgi-do').projectDir = new File(settingsDir, './mgi-do')
+include ':bio-source-mgi-fasta'
+project(':bio-source-mgi-fasta').projectDir = new File(settingsDir, './mgi-fasta')
+include ':bio-source-mgi-gff'
+project(':bio-source-mgi-gff').projectDir = new File(settingsDir, './mgi-gff')
+include ':bio-source-mgi-go'
+project(':bio-source-mgi-go').projectDir = new File(settingsDir, './mgi-go')
+include ':bio-source-mgi-mp'
+project(':bio-source-mgi-mp').projectDir = new File(settingsDir, './mgi-mp')

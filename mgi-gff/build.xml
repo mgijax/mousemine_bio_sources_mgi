@@ -1,5 +1,0 @@
-<project name="mgi-gff" default="default" basedir=".">
-  <description>build, test, package mgi-gff</description>
-  
-  <import file="../../../../imbuild/source.xml"/>
-</project>
