@@ -154,6 +154,7 @@
 	<collection name="cellLines" referenced-type="CellLine" reverse-reference="alleles" />
 	<collection name="mutationInvolves" referenced-type="MGIMutationInvolves" reverse-reference="mutation" />
 	<collection name="expresses" referenced-type="MGIExpressesComponent" reverse-reference="allele" />
+	<collection name="publications2" referenced-type="AllelePublication" />
 	</class>
 
     <class name="AlleleAttribute" is-interface="true">
@@ -164,6 +165,12 @@
     <class name="AlleleMolecularMutation" is-interface="true">
 	<!-- New class. Vocab of molecular mutation types. -->
 	<attribute name="name" type="java.lang.String"/>
+	</class>
+
+    <class name="AllelePublication" is-interface="true">
+	<!-- New class. A typed publication reference -->
+	<attribute name="type" type="java.lang.String"/>
+	<reference name="publication" referenced-type="Publication" />
 	</class>
 
     <class name="CellLine" extends="BioEntity" is-interface="true">
