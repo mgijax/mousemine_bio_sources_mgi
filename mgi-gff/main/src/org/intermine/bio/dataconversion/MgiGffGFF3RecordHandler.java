@@ -51,7 +51,7 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 	refsAndCollections.put("JGeneSegment", "gene");
 	refsAndCollections.put("CGeneSegment", "gene");
 	refsAndCollections.put("UnconfirmedTranscript", "gene");
-	refsAndCollections.put("ThreePrimeOverlappingNcRNA", "gene");
+	refsAndCollections.put("ThreePrimeOverlappingNcrna", "gene");
 	//
         refsAndCollections.put("Exon", "transcripts");
         refsAndCollections.put("PseudogenicExon", "transcripts");
