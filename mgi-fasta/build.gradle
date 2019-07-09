@@ -17,6 +17,12 @@ sourceSets {
     }
 }
 
+dependencies {
+    compile group: 'org.intermine', name: 'intermine-integrate', version: imVersion
+    compile group: "org.biojava", name: "biojava-core", version: "4.2.0"
+    compile group: "org.intermine", name: "bio-source-fasta", version: bioVersion
+}
+
 processResources {
     from('.') { include ("*.properties")}
 }
