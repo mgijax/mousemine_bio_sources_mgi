@@ -426,7 +426,7 @@
 <class name="Protein" extends="BioEntity" is-interface="true">
 	<attribute name="md5checksum" type="java.lang.String"/>
 	<attribute name="primaryAccession" type="java.lang.String"/>
-	<attribute name="molecularWeight" type="java.lang.Integer"/>
+	<attribute name="molecularWeight" type="java.lang.Double"/>
 	<attribute name="ecNumber" type="java.lang.String"/>
 	<attribute name="length" type="java.lang.Integer"/>
 	<attribute name="isFragment" type="java.lang.Boolean"/>
@@ -478,7 +478,7 @@
 <class name="Organism" is-interface="true">
 	<attribute name="species" type="java.lang.String"/>
 	<attribute name="genus" type="java.lang.String"/>
-	<attribute name="taxonId" type="java.lang.Integer"/>
+	<attribute name="taxonId" type="java.lang.String"/>
 	<attribute name="name" type="java.lang.String"/>
 	<attribute name="commonName" type="java.lang.String"/>
 	<attribute name="shortName" type="java.lang.String"/>
@@ -510,7 +510,7 @@
 	<attribute name="qualifier" type="java.lang.String"/>
 	<attribute name="annotationExtension" type="java.lang.String"/>
 	<reference name="ontologyTerm" referenced-type="OntologyTerm" reverse-reference="ontologyAnnotations"/>
-	<reference name="subject" referenced-type="BioEntity" reverse-reference="ontologyAnnotations"/>
+	<reference name="subject" referenced-type="Annotatable" reverse-reference="ontologyAnnotations"/>
 	<collection name="evidence" referenced-type="OntologyAnnotationEvidence" reverse-reference="annotation"/>
 	<collection name="dataSets" referenced-type="DataSet"/>
 </class>
