@@ -1,4 +1,9 @@
 <model name="genomic" package="org.intermine.model.bio">
+	<class name="Annotatable" is-interface="true">
+		<attribute name="primaryIdentifier" type="java.lang.String" term="http://semanticscience.org/resource/SIO_000675"/>
+		<collection name="publications" referenced-type="Publication" reverse-reference="entities"/>
+		<collection name="ontologyAnnotations" referenced-type="OntologyAnnotation" reverse-reference="subject"/>
+	</class>
 <class name="Interaction" is-interface="true">
 	<reference name="participant2" referenced-type="BioEntity"/>
 	<reference name="participant1" referenced-type="BioEntity" reverse-reference="interactions"/>
@@ -107,7 +112,7 @@
 	<attribute name="mgiJnum" type="java.lang.String"/>
 	<attribute name="pubMedId" type="java.lang.String"/>
 	<collection name="authors" referenced-type="Author" reverse-reference="publications"/>
-	<collection name="bioEntities" referenced-type="BioEntity" reverse-reference="publications"/>
+	<collection name="entities" referenced-type="Annotatable" reverse-reference="publications"/>
 	<collection name="meshTerms" referenced-type="MeshTerm" reverse-reference="publications"/>
 	<collection name="expression" referenced-type="GXDExpression" reverse-reference="publication"/>
 </class>
@@ -129,7 +134,7 @@
 <class name="SenseOverlapNcRNA" extends="LncRNA" is-interface="true"></class>
 <class name="MRNA" extends="Transcript" is-interface="true"></class>
 <class name="MiRNA" extends="NcRNA" is-interface="true"></class>
-<class name="BioEntity" is-interface="true">
+<class name="BioEntity" extends="Annotatable" is-interface="true">
 	<attribute name="description" type="java.lang.String"/>
 	<attribute name="symbol" type="java.lang.String"/>
 	<attribute name="name" type="java.lang.String"/>
@@ -140,7 +145,6 @@
 	<reference name="earliestPublication" referenced-type="Publication"/>
 	<collection name="interactions" referenced-type="Interaction" reverse-reference="participant1"/>
 	<collection name="locations" referenced-type="Location" reverse-reference="feature"/>
-	<collection name="publications" referenced-type="Publication" reverse-reference="bioEntities"/>
 	<collection name="ontologyAnnotations" referenced-type="OntologyAnnotation" reverse-reference="subject"/>
 	<collection name="synonyms" referenced-type="Synonym" reverse-reference="subject"/>
 	<collection name="crossReferences" referenced-type="CrossReference" reverse-reference="subject"/>
