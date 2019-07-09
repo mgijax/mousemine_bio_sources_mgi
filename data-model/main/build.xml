@@ -1,4 +1,0 @@
-<project name="data-model-tasks" default="default" basedir=".">
-  <description>build data-model tasks</description>
-  <import file="../../../../../imbuild/library.xml"/> 
-</project>
