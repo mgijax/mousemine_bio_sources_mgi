@@ -84,11 +84,21 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
         // some identifier. 
 	Map<String, List<String>> attrs = record.getAttributes();
 	Item feature = getFeature();
+	Item refSequence = getSequence();
+	String sequenceToString = refSequence.toString();
+	LOG.error("Howie seqeunce: " + sequenceToString);
+	Reference refStrain = getSequence().getReference("strain");
+	if (refStrain != null) {
+	    String strainToString = refStrain.toString();
+	    LOG.error("Howie strain: " + strainToString);
+	}
+	String refID = getSequence().getReference("strain").getRefId();
 	feature.setReference("strain", getSequence().getReference("strain").getRefId());
 	if (attrs.containsKey("mgi_id")) {
 	    feature.setReference("canonical", getCanonicalRef(attrs.get("mgi_id").get(0)));
 	}
     }
+
     public String getCanonicalRef(String mgiid) {
 	String featureRef = features.get(mgiid);
 	if (featureRef == null) {
@@ -106,6 +116,7 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 	}
 	return featureRef;
     }
+
     public Item getMusculusOrganism() throws ObjectStoreException {
 	String MM = "10090";
         if (musculusOrganism == null) {
