@@ -1,5 +1,6 @@
 package org.intermine.bio.dataconversion;
 
+import org.apache.log4j.Logger;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -11,10 +12,17 @@ import org.intermine.objectstore.ObjectStoreException;
 
 public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 {
+    private static final Logger LOG = Logger.getLogger(MgiGffGFF3RecordHandler.class);
+
     private Map<String,String> strains = new HashMap<String,String>();
     private Map<String,String> canonicalChrs = new HashMap<String,String>();
 
     public Item makeSequenceItem(GFF3Converter converter, String identifier) {
+
+	// Howie start debug code -----------------------------------------
+	LOG.info("Howie reached makeSequenceItem");
+	// Howie end debug code ---------------------------------------------
+
 	// Column 1 contains values the form "chr|strain"
 	// Split the value, so the chromosome primaryId is the first part and 
 	// the strain is the second.
@@ -41,7 +49,13 @@ public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 	}
 	return seq;
     }
+
     public String getStrainRef(String n, GFF3Converter converter) throws ObjectStoreException {
+
+	// Howie start debug code -----------------------------------------
+	LOG.info("Howie reached getStrainRef");
+	// Howie end debug code ---------------------------------------------
+
 	String strainRef = strains.get(n);
 	if (strainRef == null) {
 	    Item strain = converter.createItem("Strain");
@@ -52,7 +66,13 @@ public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 	}
 	return strainRef;
     }
+
     public String getCanonicalChromosomeRef(String chrid, GFF3Converter converter) throws ObjectStoreException {
+
+	// Howie start debug code -----------------------------------------
+	LOG.info("Howie reached getCanonicalChromosomeRef");
+	// Howie end debug code ---------------------------------------------
+
 	int i = chrid.indexOf("|");
 	String cchrid = i == -1 ? chrid : chrid.substring(0,chrid.indexOf("|"));
 	String chrRef = canonicalChrs.get(cchrid);
