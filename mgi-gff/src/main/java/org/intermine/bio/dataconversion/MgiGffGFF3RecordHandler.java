@@ -84,21 +84,6 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
         // some identifier. 
 	Map<String, List<String>> attrs = record.getAttributes();
 	Item feature = getFeature();
-
-	// Howie start debug code -----------------------------------------
-	Item sequence = getSequence();
-	LOG.info("Howie seqeunce: " + sequence.toString());
-
-	Reference strainRef = getSequence().getReference("strain");
-	if (strainRef == null) {
-	    LOG.error("Howie strainRef == NULL");
-	} else {
-	    LOG.info("Howie strainRef: " + strainRef.toString());
-	}
-	String strainRefId = getSequence().getReference("strain").getRefId();
-	LOG.info("Howie strainRefId: " + strainRefId.toString());
-	// Howie end debug code ---------------------------------------------
-
 	feature.setReference("strain", getSequence().getReference("strain").getRefId());
 	if (attrs.containsKey("mgi_id")) {
 	    feature.setReference("canonical", getCanonicalRef(attrs.get("mgi_id").get(0)));
