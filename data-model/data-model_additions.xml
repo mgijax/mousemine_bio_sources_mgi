@@ -336,6 +336,7 @@
         <attribute name="studyType" type="java.lang.String" />
         <attribute name="source" type="java.lang.String" />
         <attribute name="notes" type="java.lang.String" />
+        <attribute name="curationDate" type="java.lang.String" />
         <collection name="samples" referenced-type="HTSample" reverse-reference="experiment" />
 	<collection name="publications" referenced-type="Publication" />
 	<collection name="variables" referenced-type="HTVariable" />
@@ -355,6 +356,7 @@
         <attribute name="ageMin" type="java.lang.Float" />
         <attribute name="ageMax" type="java.lang.Float" />
         <attribute name="notes" type="java.lang.String" />
+        <reference name="organism" referenced-type="Organism" />
         <reference name="experiment" referenced-type="HTExperiment" reverse-reference="samples" />
         <reference name="genotype" referenced-type="Genotype" reverse-reference="samples" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="samples" />
