@@ -358,7 +358,12 @@
         <attribute name="ageMax" type="java.lang.Float" />
         <attribute name="curationStatus" type="java.lang.String" />
         <attribute name="notes" type="java.lang.String" />
+        <!-- GXD has samples for lots of organisms (only mouse are curated, though).
+             Some lots of these organisms are not in MouseMine so there won't be an organism ref.
+             For this reason, also store the organismName for all samples.
+             -->
         <reference name="organism" referenced-type="Organism" />
+        <attribute name="organismName" type="java.lang.String" />
         <reference name="experiment" referenced-type="HTExperiment" reverse-reference="samples" />
         <reference name="genotype" referenced-type="Genotype" reverse-reference="samples" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="samples" />
