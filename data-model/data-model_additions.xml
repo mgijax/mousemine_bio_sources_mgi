@@ -35,6 +35,7 @@
 	<attribute name="specificity" type="java.lang.String"/>
 	<collection name="alleles" referenced-type="Allele" reverse-reference="feature" />
 	<collection name="expression" referenced-type="GXDExpression" reverse-reference="feature"/>
+	<collection name="htExpression" referenced-type="HTData" reverse-reference="feature"/>
 	<collection name="genomicClusters" referenced-type="MGIClusterHasMember" reverse-reference="member"/>
 	<collection name="involvedInMutations" referenced-type="MGIMutationInvolves" reverse-reference="feature"/>
 	<collection name="transgenicExpressors" referenced-type="MGIExpressesComponent" reverse-reference="feature"/>
@@ -355,11 +356,54 @@
         <attribute name="age" type="java.lang.String" />
         <attribute name="ageMin" type="java.lang.Float" />
         <attribute name="ageMax" type="java.lang.Float" />
+        <attribute name="curationStatus" type="java.lang.String" />
         <attribute name="notes" type="java.lang.String" />
         <reference name="organism" referenced-type="Organism" />
         <reference name="experiment" referenced-type="HTExperiment" reverse-reference="samples" />
         <reference name="genotype" referenced-type="Genotype" reverse-reference="samples" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="samples" />
+
+        <!-- Each sample has a collection of HTData objects, each of which records the tpm
+             value for one gene.
+             A given sample may or may not have data; if it does, it has data for "all" genes.
+             If the sample is a "base" sample, a tpm value represents the average tpm value for
+             a set of technical replicates. A base sample has an empty "combines" collection.
+             If the sample is a "combined" sample, the value represents the average of the
+             quantile normalized tpm values from the biological replicates. A combined
+             sample has a non-empty "combines" collection which contains the replicates,
+             which are base samples.
+        <reference name="combined" referenced-type="HTSample" reverse-reference="combines" />
+        <collection name="combines" referenced-type="HTSample" reverse-reference="combined" />
+        <collection name="data" referenced-type="HTData" reverse-reference="sample" />
+             -->
+
+        </class>
+
+    <!-- ****************** High Throughput Data ****************************** -->
+    <!-- We declare these as simple objects (ie NOT subclasses of IntermineObject)
+         for efficiency. Simple object are not tracked in the tracking table, 
+         are much more space efficient and much faster to load. But there are also
+         restrictions. For details see intermine documentation:
+         https://intermine.readthedocs.io/en/latest/database/performance/data-loading
+         -->
+    <class name="HTData" is-interface="false" extends="java.lang.Object">
+        <!-- Either average tpm for a base sample, or the average quantile
+             normalized tmp value for a set of biological replicates. (See above.)
+             -->
+        <attribute name="tpm" type="java.lang.Float" />
+
+        <!-- tpm value mapped to a qualitative level: high, medium, low, below cutoff.
+             Mapping uses the default GXD/MGI mapping.
+             -->
+        <attribute name="level" type="java.lang.String" />
+
+        <!-- The sample this data point belongs to.
+             -->
+        <reference name="sample" referenced-type="HTSample" reverse-reference="data" />
+
+        <!-- The gene this data point is for.
+             -->
+        <reference name="feature" referenced-type="SequenceFeature" reverse-reference="htExpression" />
         </class>
 
     <!-- 
