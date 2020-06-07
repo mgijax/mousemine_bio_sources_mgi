@@ -377,10 +377,10 @@
              quantile normalized tpm values from the biological replicates. A combined
              sample has a non-empty "combines" collection which contains the replicates,
              which are base samples.
+             -->
         <reference name="combined" referenced-type="HTSample" reverse-reference="combines" />
         <collection name="combines" referenced-type="HTSample" reverse-reference="combined" />
         <collection name="data" referenced-type="HTData" reverse-reference="sample" />
-             -->
 
         </class>
 
