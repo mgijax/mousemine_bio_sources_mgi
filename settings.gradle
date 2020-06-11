@@ -13,3 +13,5 @@ include ':bio-source-mgi-fasta'
 project(':bio-source-mgi-fasta').projectDir = new File(settingsDir, './mgi-fasta')
 include ':bio-source-mgi-gff'
 project(':bio-source-mgi-gff').projectDir = new File(settingsDir, './mgi-gff')
+include ':bio-source-mgi-base'
+project(':bio-source-mgi-base').projectDir = new File(settingsDir, './mgi-base')

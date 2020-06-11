@@ -12,7 +12,7 @@ import org.intermine.objectstore.ObjectStoreException;
 
 public class MgiGffGFF3ChromosomeHandler extends GFF3SeqHandler
 {
-    private static final Logger LOG = Logger.getLogger(MgiGffGFF3RecordHandler.class);
+    private static final Logger LOG = Logger.getLogger(MgiGffGFF3ChromosomeHandler.class);
 
     private Map<String,String> strains = new HashMap<String,String>();
     private Map<String,String> canonicalChrs = new HashMap<String,String>();
