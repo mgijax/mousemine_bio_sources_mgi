@@ -1,5 +1,6 @@
 package org.intermine.bio.dataconversion;
 
+import org.apache.log4j.Logger;
 import org.biojava.nbio.core.sequence.template.Sequence;
 import org.intermine.bio.dataconversion.FastaLoaderTask;
 
@@ -11,6 +12,9 @@ public class MGIStrainFastaLoader extends FastaLoaderTask
     /**
      * {@inheritDoc}
      */
+
+    private static final Logger LOG = Logger.getLogger(MGIStrainFastaLoader.class);
+
     @Override
     protected String getIdentifier(Sequence bioJavaSequence) {
         // from old library
@@ -23,19 +27,7 @@ public class MGIStrainFastaLoader extends FastaLoaderTask
         String header = bioJavaSequence.getAccession().getID();
         String name = null;
 
-        if (header.contains("|")) {
-            String[] bits = header.split("\\|");
-            if (bits.length < 2) {
-                return null;
-            }
-            name = bits[1];
-        }
-
-        if (name.contains(" ")) {
-            String[] bits = name.split(" ");
-            name = bits[0];
-        }
-
+	name = header.split("\\s")[0];
         return name;
     }
 }
