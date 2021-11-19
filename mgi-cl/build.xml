@@ -1,0 +1,5 @@
+<project name="mgi-cl" default="default" basedir=".">
+  <description>build, test, package mgi-cl</description>
+  
+  <import file="../../../../imbuild/source.xml"/>
+</project>

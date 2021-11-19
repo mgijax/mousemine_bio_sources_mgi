@@ -235,6 +235,7 @@
     <class name="DiseaseTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="DOTerm" extends="DiseaseTerm" is-interface="true"> </class>    
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
+    <class name="CLTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPATerm" extends="AnatomyTerm" is-interface="true"> 
         <collection name="expression" referenced-type="GXDExpression" reverse-reference="structure"/>
