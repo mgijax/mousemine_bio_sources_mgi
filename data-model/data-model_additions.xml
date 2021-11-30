@@ -326,6 +326,7 @@
         <attribute name="pattern" type="java.lang.String" />
         <attribute name="image" type="java.lang.String" />
         <attribute name="specimenNum" type="java.lang.Integer" />
+        <attribute name="specimenLabel" type="java.lang.String" />
         <attribute name="note" type="java.lang.String" />
         <reference name="publication" referenced-type="Publication" reverse-reference="expression" />
 	<attribute name="annotationDate" type="java.lang.String" />
