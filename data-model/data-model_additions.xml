@@ -433,7 +433,13 @@
 	<attribute name="evidenceCode" type="java.lang.String" />
 	<reference name="dataSet" referenced-type="DataSet" />
         <reference name="publication" referenced-type="Publication" />
+	<collection name="properties" referenced-type="MGIDirectedRelationshipProperty" />
 	</class>
+
+    <class name="MGIDirectedRelationshipProperty" is-interface="true">
+	<attribute name="name" type="java.lang.String" />
+	<attribute name="value" type="java.lang.String" />
+        </class>
 
     <class name="MGIMutationInvolves" extends="MGIDirectedRelationship"  is-interface="true"> 
 	<reference name="mutation" referenced-type="Allele" reverse-reference="mutationInvolves" />
@@ -443,10 +449,6 @@
     <class name="MGIExpressesComponent" extends="MGIDirectedRelationship"  is-interface="true"> 
 	<reference name="allele" referenced-type="Allele" reverse-reference="expresses" />
 	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="transgenicExpressors"/>
-	<!-- -->
-	<attribute name="nonMouseOrganism" type="java.lang.String" />
-	<attribute name="nonMouseGeneSymbol" type="java.lang.String" />
-	<attribute name="nonMouseNcbiGeneId" type="java.lang.String" />
         </class>
 
     <class name="MGIInteractsWith" extends="MGIDirectedRelationship"  is-interface="true"> 
@@ -460,6 +462,7 @@
 	<attribute name="participantProductId" type="java.lang.String" />
 	<attribute name="organizerProductId" type="java.lang.String" />
 	<attribute name="otherRefs" type="java.lang.String" />
+
         </class>
 
     <class name="MGIClusterHasMember" extends="MGIDirectedRelationship"  is-interface="true"> 
