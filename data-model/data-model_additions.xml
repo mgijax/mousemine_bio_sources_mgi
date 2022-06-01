@@ -237,6 +237,7 @@
     <class name="MPTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="CLTerm" extends="OntologyTerm" is-interface="true">
         <collection name="expression" referenced-type="GXDExpression" reverse-reference="celltype"/>
+        <collection name="samples" referenced-type="HTSample" reverse-reference="celltype"/>
     </class>
     <class name="AnatomyTerm" extends="OntologyTerm" is-interface="true"> </class>
     <class name="EMAPATerm" extends="AnatomyTerm" is-interface="true"> 
@@ -364,7 +365,7 @@
         <attribute name="curationStatus" type="java.lang.String" />
         <attribute name="notes" type="java.lang.String" />
         <!-- GXD has samples for lots of organisms (only mouse are curated, though).
-             Some lots of these organisms are not in MouseMine so there won't be an organism ref.
+             Some of these organisms are not in MouseMine so there won't be an organism ref.
              For this reason, also store the organismName for all samples.
              -->
         <reference name="organism" referenced-type="Organism" />
@@ -372,6 +373,7 @@
         <reference name="experiment" referenced-type="HTExperiment" reverse-reference="samples" />
         <reference name="genotype" referenced-type="Genotype" reverse-reference="samples" />
         <reference name="structure" referenced-type="EMAPATerm" reverse-reference="samples" />
+        <reference name="celltype" referenced-type="CLTerm" reverse-reference="samples" />
 
         <!-- Each sample has a collection of HTData objects, each of which records the tpm
              value for one gene.
