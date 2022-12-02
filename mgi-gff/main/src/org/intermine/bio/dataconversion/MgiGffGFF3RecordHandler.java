@@ -42,7 +42,9 @@ public class MgiGffGFF3RecordHandler extends GFF3RecordHandler
 	refsAndCollections.put("TRNA", "gene");
         refsAndCollections.put("Transcript", "gene");
 	refsAndCollections.put("LincRNA", "gene");
-	refsAndCollections.put("SenseOverlapNcRNA", "gene");
+	refsAndCollections.put("SenseOverlapLncRNA", "gene");
+	refsAndCollections.put("SenseIntronicLncRNA", "gene");
+	refsAndCollections.put("BidirectionalPromoterLncRNA", "gene");
 	refsAndCollections.put("AberrantProcessedTranscript", "gene");
 	refsAndCollections.put("ProcessedTranscript", "gene");
 	refsAndCollections.put("NMDTranscript", "gene");
