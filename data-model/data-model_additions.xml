@@ -39,6 +39,7 @@
 	<collection name="genomicClusters" referenced-type="MGIClusterHasMember" reverse-reference="member"/>
 	<collection name="involvedInMutations" referenced-type="MGIMutationInvolves" reverse-reference="feature"/>
 	<collection name="transgenicExpressors" referenced-type="MGIExpressesComponent" reverse-reference="feature"/>
+	<collection name="driverFor" referenced-type="MGIAlleleToDriverGene" reverse-reference="feature"/>
 	<collection name="targets" referenced-type="MGIInteractsWith" reverse-reference="interactor"/>
 	<collection name="targetedBy" referenced-type="MGIInteractsWith" reverse-reference="target"/>
 
@@ -155,6 +156,7 @@
 	<collection name="cellLines" referenced-type="CellLine" reverse-reference="alleles" />
 	<collection name="mutationInvolves" referenced-type="MGIMutationInvolves" reverse-reference="mutation" />
 	<collection name="expresses" referenced-type="MGIExpressesComponent" reverse-reference="allele" />
+	<collection name="drivenBy" referenced-type="MGIAlleleToDriverGene" reverse-reference="allele" />
 	<collection name="publications2" referenced-type="AllelePublication" />
 	</class>
 
@@ -451,6 +453,11 @@
     <class name="MGIExpressesComponent" extends="MGIDirectedRelationship"  is-interface="true"> 
 	<reference name="allele" referenced-type="Allele" reverse-reference="expresses" />
 	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="transgenicExpressors"/>
+        </class>
+
+    <class name="MGIAlleleToDriverGene" extends="MGIDirectedRelationship"  is-interface="true"> 
+	<reference name="allele" referenced-type="Allele" reverse-reference="drivenBy" />
+	<reference name="feature" referenced-type="SequenceFeature" reverse-reference="driverFor"/>
         </class>
 
     <class name="MGIInteractsWith" extends="MGIDirectedRelationship"  is-interface="true"> 
