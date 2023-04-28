@@ -56,6 +56,14 @@
 	<collection name="specific" referenced-type="SequenceFeature" reverse-reference="canonical" />
 	<reference name="canonical" referenced-type="SequenceFeature" reverse-reference="specific" />
 
+        <!-- In the PAR (pseudoautosomal region), homologous genes on the X and Y point to each other using this field.
+             Example: Erdr1x (MGI:2384747) / Erdr1y (MGI:6096131) 
+             This is populated from the PARtner-of relationship (type 1012) in MGI.
+             (This ought to have 'reverse-reference="PARtner"', but the docs say to avoid doing this.
+              The data from MGI populates both directions in this relationship.)
+         -->
+	<reference name="PARtner" referenced-type="SequenceFeature" />
+
 	</class>
 
     <!-- To match MGI model, make GeneSegment a subclass of Gene.  In the default SO model, 
